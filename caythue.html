@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -54,8 +55,42 @@
       margin: 0 auto;
     }
 
-    /* HERO */
+    /* KHÓA KÍCH THƯỚC LOGO MENU */
+    #site-menu .header .navbar .logo {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      flex-shrink: 0 !important;
+      white-space: nowrap;
+    }
 
+    #site-menu .header .navbar .logo img,
+    #site-menu .header .navbar .logo img.site-logo {
+      display: block !important;
+      width: 30px !important;
+      height: 30px !important;
+      min-width: 30px !important;
+      min-height: 30px !important;
+      max-width: 30px !important;
+      max-height: 30px !important;
+      object-fit: contain !important;
+      flex: 0 0 30px !important;
+    }
+
+    @media (max-width: 650px) {
+      #site-menu .header .navbar .logo img,
+      #site-menu .header .navbar .logo img.site-logo {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        max-width: 28px !important;
+        max-height: 28px !important;
+        flex-basis: 28px !important;
+      }
+    }
+
+    /* HERO */
     .hero {
       position: relative;
       overflow: hidden;
@@ -142,7 +177,6 @@
     }
 
     /* SECTION */
-
     .section {
       padding: 55px 0 75px;
     }
@@ -164,7 +198,6 @@
     }
 
     /* SERVICE CARDS */
-
     .service-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -224,7 +257,6 @@
     }
 
     /* QUY TRÌNH */
-
     .process {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -262,7 +294,6 @@
     }
 
     /* NOTICE */
-
     .notice {
       margin-top: 28px;
       padding: 22px;
@@ -283,7 +314,6 @@
     }
 
     /* RESPONSIVE */
-
     @media (max-width: 850px) {
       .service-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -324,9 +354,8 @@
 
 <body>
 
-  <!-- MENU DÙNG CHUNG -->
-   <div id="site-menu"></div>
-<script src="menu.js"></script>
+  <!-- MENU DÙNG CHUNG: CHỈ GỌI MENU.JS MỘT LẦN -->
+  <div id="site-menu"></div>
 
   <main>
 
@@ -385,12 +414,8 @@
               Hỗ trợ nâng cấp nhân vật theo mục tiêu đã thống nhất,
               tùy tình trạng tài khoản và nội dung game.
             </p>
-            <a class="service-link"
-               href="https://zalo.me/0776912430"
-               target="_blank"
-               rel="noopener noreferrer">
-              Hỏi dịch vụ →
-            </a>
+            <a class="service-link" href="https://zalo.me/0776912430"
+               target="_blank" rel="noopener noreferrer">Hỏi dịch vụ →</a>
           </article>
 
           <article class="service-card">
@@ -400,12 +425,8 @@
               Trao đổi yêu cầu săn boss, thời gian thực hiện
               và vật phẩm mục tiêu trước khi đặt dịch vụ.
             </p>
-            <a class="service-link"
-               href="https://zalo.me/0776912430"
-               target="_blank"
-               rel="noopener noreferrer">
-              Hỏi dịch vụ →
-            </a>
+            <a class="service-link" href="https://zalo.me/0776912430"
+               target="_blank" rel="noopener noreferrer">Hỏi dịch vụ →</a>
           </article>
 
           <article class="service-card">
@@ -415,12 +436,8 @@
               Hỗ trợ thực hiện phó bản phù hợp với cấp độ,
               trang bị và điều kiện của nhân vật.
             </p>
-            <a class="service-link"
-               href="https://zalo.me/0776912430"
-               target="_blank"
-               rel="noopener noreferrer">
-              Hỏi dịch vụ →
-            </a>
+            <a class="service-link" href="https://zalo.me/0776912430"
+               target="_blank" rel="noopener noreferrer">Hỏi dịch vụ →</a>
           </article>
 
           <article class="service-card">
@@ -430,12 +447,8 @@
               Thống nhất loại nguyên liệu, số lượng mục tiêu
               và thời gian dự kiến trước khi thực hiện.
             </p>
-            <a class="service-link"
-               href="https://zalo.me/0776912430"
-               target="_blank"
-               rel="noopener noreferrer">
-              Hỏi dịch vụ →
-            </a>
+            <a class="service-link" href="https://zalo.me/0776912430"
+               target="_blank" rel="noopener noreferrer">Hỏi dịch vụ →</a>
           </article>
 
           <article class="service-card">
@@ -445,12 +458,8 @@
               Trao đổi về nhiệm vụ cần hoàn thành và điều kiện
               nhân vật để xác nhận có thể hỗ trợ hay không.
             </p>
-            <a class="service-link"
-               href="https://zalo.me/0776912430"
-               target="_blank"
-               rel="noopener noreferrer">
-              Hỏi dịch vụ →
-            </a>
+            <a class="service-link" href="https://zalo.me/0776912430"
+               target="_blank" rel="noopener noreferrer">Hỏi dịch vụ →</a>
           </article>
 
           <article class="service-card">
@@ -460,12 +469,8 @@
               Có mục tiêu khác? Gửi thông tin cụ thể để trao đổi
               phương án thực hiện và báo giá.
             </p>
-            <a class="service-link"
-               href="https://zalo.me/0776912430"
-               target="_blank"
-               rel="noopener noreferrer">
-              Liên hệ tư vấn →
-            </a>
+            <a class="service-link" href="https://zalo.me/0776912430"
+               target="_blank" rel="noopener noreferrer">Liên hệ tư vấn →</a>
           </article>
 
         </div>
@@ -533,3 +538,4 @@
 
 </body>
 </html>
+```
