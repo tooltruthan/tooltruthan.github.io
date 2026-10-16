@@ -1,11 +1,13 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10111b">
-<title>Tool TRU THẦN</title>
 <meta name="description" content="Danh sách các phiên bản Tool Tru Thần: Auto phó bản, nhiệm vụ, train, săn boss và tool tích hợp.">
+
+<title>Phiên Bản Tool - TRU THẦN</title>
 
 <style>
 :root {
@@ -16,49 +18,104 @@
   --muted: #a5a8bb;
   --line: rgba(242,198,109,.2);
 }
-* { box-sizing: border-box; }
-body {
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
   background:
     radial-gradient(ellipse at top, #29203d 0%, transparent 48%),
     var(--bg);
   color: var(--text);
   min-height: 100vh;
+  line-height: 1.7;
 }
-a { color: inherit; text-decoration: none; }
-header {
-  border-bottom: 1px solid var(--line);
-  background: rgba(16,17,27,.94);
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* THANH MENU */
+
+.header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
+  background: rgba(16,17,27,.94);
+  border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
 }
-.nav {
-  max-width: 1100px;
+
+.navbar {
+  width: min(1100px, 94%);
+  min-height: 70px;
   margin: auto;
-  padding: 16px 20px;
+  padding: 10px 0;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
+
+/* LOGO ĐÃ THU NHỎ */
+
 .logo {
-  color: var(--gold);
-  font-weight: 900;
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-.menu {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 22px;
-  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--gold);
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.menu a { font-size: 14px; color: #dddbea; }
-.menu a:hover, .menu a.active { color: var(--gold); }
+
+.logo img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  max-width: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* MENU */
+
+.nav-menu {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 12px;
+}
+
+.nav-menu a {
+  padding: 9px 10px;
+  color: #dddbea;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: .2s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--gold);
+}
+
+/* TIÊU ĐỀ */
 
 .hero {
   max-width: 1000px;
@@ -66,17 +123,24 @@ header {
   padding: 65px 20px 35px;
   text-align: center;
 }
+
 .eyebrow {
   color: var(--gold);
   letter-spacing: 3px;
   font-size: 12px;
   font-weight: bold;
 }
+
 h1 {
   margin: 16px 0 12px;
   font-size: clamp(30px, 6vw, 48px);
+  line-height: 1.2;
 }
-h1 span { color: var(--gold); }
+
+h1 span {
+  color: var(--gold);
+}
+
 .hero p {
   color: var(--muted);
   line-height: 1.8;
@@ -84,11 +148,16 @@ h1 span { color: var(--gold); }
   margin: auto;
   font-size: 15px;
 }
+
+/* KHU VỰC DANH SÁCH */
+
 .container {
   max-width: 1100px;
+  width: 100%;
   padding: 15px 20px 65px;
   margin: auto;
 }
+
 .section-title {
   display: flex;
   justify-content: space-between;
@@ -96,14 +165,27 @@ h1 span { color: var(--gold); }
   gap: 12px;
   margin: 12px 0 22px;
 }
-.section-title h2 { font-size: 21px; margin: 0; }
-.count { color: var(--muted); font-size: 13px; }
+
+.section-title h2 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.count {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* LƯỚI PHIÊN BẢN */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
+
+/* THẺ TOOL */
+
 .card {
   position: relative;
   overflow: hidden;
@@ -116,27 +198,32 @@ h1 span { color: var(--gold); }
   background: linear-gradient(145deg, #202235, #151622);
   transition: .2s ease;
 }
+
 .card:hover {
   transform: translateY(-4px);
   border-color: rgba(242,198,109,.65);
   box-shadow: 0 12px 35px #0003;
 }
+
 .card.featured {
   border-color: rgba(242,198,109,.55);
   background: linear-gradient(145deg, #30253b, #191927);
 }
+
 .card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
+
 .number {
   color: var(--gold);
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 1px;
 }
+
 .status {
   font-size: 11px;
   padding: 6px 9px;
@@ -146,16 +233,24 @@ h1 span { color: var(--gold); }
   color: #c7c8d4;
   white-space: nowrap;
 }
+
 .status.ready {
   color: #91e7b2;
   border-color: #91e7b244;
   background: #91e7b20c;
 }
+
 .symbol {
   font-size: 30px;
   margin-top: 22px;
 }
-.card h3 { margin: 12px 0 9px; font-size: 19px; }
+
+.card h3 {
+  margin: 12px 0 9px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
 .card p {
   color: var(--muted);
   line-height: 1.7;
@@ -163,6 +258,9 @@ h1 span { color: var(--gold); }
   margin: 0 0 22px;
   flex: 1;
 }
+
+/* NÚT */
+
 .btn {
   display: block;
   width: 100%;
@@ -175,13 +273,25 @@ h1 span { color: var(--gold); }
   font-weight: bold;
   background: #f2c66d08;
   cursor: pointer;
+  transition: .2s;
 }
-.btn:hover { background: #f2c66d16; }
+
+.btn:hover {
+  background: #f2c66d16;
+}
+
 .btn.primary {
   color: #20180c;
   background: linear-gradient(100deg, #f6d88d, #e8b454);
   border: none;
 }
+
+.btn.primary:hover {
+  filter: brightness(1.08);
+}
+
+/* THÔNG BÁO */
+
 .notice {
   margin-top: 28px;
   padding: 18px;
@@ -192,55 +302,195 @@ h1 span { color: var(--gold); }
   line-height: 1.8;
   background: #ffffff04;
 }
-.notice strong { color: var(--gold); }
+
+.notice strong {
+  color: var(--gold);
+}
+
+/* CHÂN TRANG */
+
 footer {
   border-top: 1px solid var(--line);
   padding: 25px 20px;
   text-align: center;
   color: var(--muted);
   font-size: 12px;
+  background: #0b0c14;
 }
-@media(max-width: 760px) {
-  .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .menu { gap: 12px; }
-  .menu a { font-size: 12px; }
-  .hero { padding-top: 48px; }
+
+footer p {
+  margin-top: 5px;
 }
-@media(max-width: 480px) {
-  .nav { flex-direction: column; }
-  .menu { width: 100%; justify-content: space-between; }
-  .grid { grid-template-columns: 1fr; }
-  .card { min-height: 230px; }
+
+/* MÁY TÍNH BẢNG */
+
+@media (max-width: 900px) {
+  .navbar {
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .logo img {
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+  }
+
+  .nav-menu {
+    gap: 4px;
+  }
+
+  .nav-menu a {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ĐIỆN THOẠI */
+
+@media (max-width: 600px) {
+  .navbar {
+    width: 94%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .logo {
+    font-size: 16px;
+    gap: 8px;
+  }
+
+  .logo img {
+    width: 30px;
+    height: 30px;
+    max-width: 30px;
+  }
+
+  .nav-menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+  }
+
+  .nav-menu a {
+    font-size: 11px;
+    padding: 7px 4px;
+  }
+
+  .hero {
+    padding: 48px 18px 28px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 15px 16px 45px;
+  }
+
+  .section-title h2 {
+    font-size: 18px;
+  }
+
+  .count {
+    font-size: 11px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card {
+    min-height: 230px;
+    padding: 21px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  .notice {
+    padding: 15px;
+  }
+}
+
+/* ĐIỆN THOẠI MÀN HÌNH NHỎ */
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 14px;
+  }
+
+  .nav-menu a {
+    font-size: 10px;
+    padding: 7px 2px;
+  }
+
+  .card {
+    padding: 17px;
+  }
+
+  .status {
+    font-size: 10px;
+    padding: 5px 7px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <!-- THANH MENU -->
-  <header class="header">
-    <div class="container navbar">
+<header class="header">
+  <div class="navbar">
 
-      <a href="index.html" class="logo">
-        <img
-          src="logo.png"
-          alt="Logo TOOL TRU THẦN"
-          onerror="this.style.display='none'">
-        <span>TOOL TRU THẦN</span>
-      </a>
+    <a href="index.html" class="logo">
+      <img
+        src="logo.png"
+        alt="Logo TOOL TRU THẦN"
+        onerror="this.style.display='none'">
+      <span>TOOL TRU THẦN</span>
+    </a>
 
-      <nav class="nav-menu">
-        <a href="phienbantool.html"> Tool</a>
-         <a href="phienbantool.html">Cày Thuê</a>
-        <a href="phienbantool.html">Acc & Vật Phẩm</a>
-        <a href="lienhe.html">Hỗ trợ</a>
-      </nav>
+    <nav class="nav-menu">
+      <a href="phienbantool.html" class="active">Tool</a>
+      <a href="phienbantool.html">Cày Thuê</a>
+      <a href="phienbantool.html">Acc & Vật Phẩm</a>
+      <a href="lienhe.html">Hỗ trợ</a>
+    </nav>
 
-    </div>
-  </header>
+  </div>
+</header>
 
+<!-- TIÊU ĐỀ -->
 <section class="hero">
   <div class="eyebrow">TRU THẦN • TOOL COLLECTION</div>
-  <h1>PHIÊN BẢN <span>TOOL</span></h1>
+
+  <h1>
+    PHIÊN BẢN <span>TOOL</span>
+  </h1>
+
   <p>
     Khám phá các phiên bản hỗ trợ game Tru Thần.
     Chọn phiên bản phù hợp với nhu cầu của bạn.
@@ -248,7 +498,9 @@ footer {
   </p>
 </section>
 
+<!-- DANH SÁCH PHIÊN BẢN -->
 <main class="container">
+
   <div class="section-title">
     <h2>Danh sách phiên bản</h2>
     <span class="count">05 phiên bản</span>
@@ -256,74 +508,132 @@ footer {
 
   <div class="grid">
 
+    <!-- BẢN 1 -->
     <article class="card featured">
       <div class="card-top">
         <span class="number">VERSION 01</span>
         <span class="status ready">● Ưu tiên</span>
       </div>
+
       <div class="symbol">⚔️</div>
+
       <h3>Bản 1 — Auto phó bản</h3>
-      <p>Hỗ trợ tự động chạy phó bản. Thông tin tải và hướng dẫn sử dụng sẽ được cập nhật.</p>
-      <a class="btn primary" href="dangcapnhat.html">Thông tin phiên bản</a>
+
+      <p>
+        Hỗ trợ tự động chạy phó bản.
+        Thông tin tải và hướng dẫn sử dụng sẽ được cập nhật.
+      </p>
+
+      <a class="btn primary" href="dangcapnhat.html">
+        Thông tin phiên bản
+      </a>
     </article>
 
+    <!-- BẢN 2 -->
     <article class="card">
       <div class="card-top">
         <span class="number">VERSION 02</span>
         <span class="status">Đang cập nhật</span>
       </div>
+
       <div class="symbol">📜</div>
+
       <h3>Bản 2 — Auto nhiệm vụ</h3>
-      <p>Phiên bản hỗ trợ tự động thực hiện nhiệm vụ. Theo dõi trang để nhận thông báo mới.</p>
-      <a class="btn" href="dangcapnhat.html">Theo dõi cập nhật</a>
+
+      <p>
+        Phiên bản hỗ trợ tự động thực hiện nhiệm vụ.
+        Theo dõi trang để nhận thông báo mới.
+      </p>
+
+      <a class="btn" href="dangcapnhat.html">
+        Theo dõi cập nhật
+      </a>
     </article>
 
+    <!-- BẢN 3 -->
     <article class="card">
       <div class="card-top">
         <span class="number">VERSION 03</span>
         <span class="status">Đang cập nhật</span>
       </div>
+
       <div class="symbol">🐇</div>
+
       <h3>Bản 3 — Auto train & ăn thỏ</h3>
-      <p>Danh mục hỗ trợ treo train và tính năng ăn thỏ trong game.</p>
-      <a class="btn" href="dangcapnhat.html">Theo dõi cập nhật</a>
+
+      <p>
+        Danh mục hỗ trợ treo train và tính năng ăn thỏ trong game.
+      </p>
+
+      <a class="btn" href="dangcapnhat.html">
+        Theo dõi cập nhật
+      </a>
     </article>
 
+    <!-- BẢN 5 -->
     <article class="card">
       <div class="card-top">
         <span class="number">VERSION 05</span>
         <span class="status">Đang cập nhật</span>
       </div>
+
       <div class="symbol">🐉</div>
+
       <h3>Bản 5 — Auto săn boss</h3>
-      <p>Hướng đến việc hỗ trợ tìm kiếm và săn boss. Chi tiết sẽ được bổ sung sau.</p>
-      <a class="btn" href="dangcapnhat.html">Theo dõi cập nhật</a>
+
+      <p>
+        Hướng đến việc hỗ trợ tìm kiếm và săn boss.
+        Chi tiết sẽ được bổ sung sau.
+      </p>
+
+      <a class="btn" href="dangcapnhat.html">
+        Theo dõi cập nhật
+      </a>
     </article>
 
+    <!-- BẢN 6 -->
     <article class="card featured">
       <div class="card-top">
         <span class="number">VERSION 06</span>
         <span class="status">Đang phát triển</span>
       </div>
+
       <div class="symbol">✨</div>
+
       <h3>Bản 6 — Tool tích hợp</h3>
-      <p>Phiên bản tổng hợp nhiều tính năng trong một giao diện, hướng đến trải nghiệm thuận tiện.</p>
-      <a class="btn primary" href="dangcapnhat.html">Thông tin phiên bản</a>
+
+      <p>
+        Phiên bản tổng hợp nhiều tính năng trong một giao diện,
+        hướng đến trải nghiệm thuận tiện.
+      </p>
+
+      <a class="btn primary" href="dangcapnhat.html">
+        Thông tin phiên bản
+      </a>
     </article>
 
   </div>
 
+  <!-- THÔNG BÁO -->
   <div class="notice">
     <strong>✦ Thông báo cập nhật</strong><br>
     Các phiên bản chưa có liên kết tải chính thức sẽ hiển thị trạng thái
     đang cập nhật. Vui lòng theo dõi website để biết thông tin mới nhất.
     Chỉ tải file từ nguồn chính thức.
   </div>
+
 </main>
 
+<!-- CHÂN TRANG -->
 <footer>
   <div>⚔ TOOL TRU THẦN</div>
-  <p>© 2026 Tool Tru Thần • Đồng hành cùng hành trình tu luyện</p>
+  <p>© <span id="year">2026</span> Tool Tru Thần • Đồng hành cùng hành trình tu luyện</p>
 </footer>
+
+<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
 </body>
 </html>
