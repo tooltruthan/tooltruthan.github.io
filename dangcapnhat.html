@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10111b">
+  <meta name="description" content="Tool Tru Thần đang được cập nhật để mang đến trải nghiệm tốt hơn.">
+  <title>Đang cập nhật - TOOL TRU THẦN</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      color: #f5f3ff;
+      background:
+        radial-gradient(ellipse at top, #413064 0%, #19182b 45%, #10111b 100%);
+    }
+
+    header {
+      min-height: 65px;
+      padding: 12px 5%;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #303147;
+      background: rgba(21, 22, 38, 0.9);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo img {
+      display: block;
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 45px 18px;
+    }
+
+    .update-card {
+      width: 100%;
+      max-width: 520px;
+      padding: 36px 26px;
+      text-align: center;
+      background: rgba(24, 25, 41, 0.92);
+      border: 1px solid #45405f;
+      border-radius: 22px;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
+    }
+
+    .emblem {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid #7960a9;
+      background: #29213e;
+      font-size: 45px;
+      animation: glow 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(197, 167, 255, 0.12);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(197, 167, 255, 0.35);
+      }
+    }
+
+    .status {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #7960a9;
+      border-radius: 30px;
+      color: #ddc8ff;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin: 22px 0 14px;
+      font-size: clamp(28px, 6vw, 38px);
+      color: #f2eaff;
+    }
+
+    .description {
+      margin: 0 auto;
+      max-width: 410px;
+      color: #c4c0d5;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .loading-area {
+      margin: 28px 0 12px;
+    }
+
+    .loading-text {
+      margin-bottom: 12px;
+      color: #c5a7ff;
+      font-size: 13px;
+    }
+
+    .loading-track {
+      height: 7px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #302b43;
+    }
+
+    .loading-bar {
+      width: 35%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #7650bd, #ddc8ff);
+      animation: loading 2s ease-in-out infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        transform: translateX(-110%);
+      }
+      100% {
+        transform: translateX(300%);
+      }
+    }
+
+    .note {
+      margin-top: 22px;
+      color: #9692ad;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 44px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: 1px solid #7960a9;
+      background: #7650bd;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #8962d1;
+      transform: translateY(-2px);
+    }
+
+    .btn.secondary {
+      background: transparent;
+    }
+
+    footer {
+      padding: 20px 12px;
+      border-top: 1px solid #303147;
+      background: rgba(21, 22, 38, 0.8);
+      color: #9692ad;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 400px) {
+      .update-card {
+        padding: 30px 18px;
+      }
+
+      .emblem {
+        width: 82px;
+        height: 82px;
+        font-size: 36px;
+      }
+
+      .description {
+        font-size: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a class="logo" href="index.html" aria-label="Về trang chủ">
+      <img src="./logo.png" alt="Logo Tru Thần">
+    </a>
+  </header>
+
+  <main>
+    <section class="update-card">
+      <div class="emblem" aria-hidden="true">⚔️</div>
+
+      <span class="status">✦ HỆ THỐNG ĐANG HOÀN THIỆN ✦</span>
+
+      <h1>Đang cập nhật</h1>
+
+      <p class="description">
+        Đạo hữu vui lòng chờ đợi!
+        Chúng tôi đang hoàn thiện khu vực này để mang đến
+        trải nghiệm sử dụng công cụ Tru Thần tốt hơn.
+      </p>
+
+      <div class="loading-area">
+        <div class="loading-text">
+          Đang chuẩn bị nội dung...
+        </div>
+
+        <div
+          class="loading-track"
+          role="progressbar"
+          aria-label="Hiệu ứng chờ cập nhật"
+        >
+          <div class="loading-bar"></div>
+        </div>
+      </div>
+
+      <p class="note">
+        Thanh tiến trình là hiệu ứng chờ, không thể hiện
+        phần trăm cập nhật thực tế. Vui lòng quay lại sau.
+      </p>
+
+      <div class="actions">
+        <a href="index.html" class="btn">← Trang chủ</a>
+        <a href="lienhe.html" class="btn secondary">
+          Liên hệ hỗ trợ
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 TOOL TRU THẦN</div>
+    <div>Đồng hành cùng game thủ Việt.</div>
+  </footer>
+
+</body>
+</html>
