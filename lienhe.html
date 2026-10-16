@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Liên hệ Tool Tru Thần - Hỗ trợ bot, fix lỗi, cài đặt và cấp key bản quyền.">
-
   <title>Liên hệ | TOOL TRU THẦN</title>
+
+  <!-- MENU DÙNG CHUNG -->
+  <script src="menu.js" defer></script>
 
   <style>
     :root {
@@ -17,7 +20,7 @@
       --muted: #a6b0c8;
       --gold: #f5c76a;
       --blue: #65a8ff;
-      --border: rgba(255, 255, 255, 0.09);
+      --border: rgba(255,255,255,.09);
     }
 
     * {
@@ -33,16 +36,8 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(
-          circle at 15% 0%,
-          rgba(61, 91, 170, 0.20),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at 90% 15%,
-          rgba(157, 93, 255, 0.12),
-          transparent 30%
-        ),
+        radial-gradient(circle at 15% 0%, rgba(61,91,170,.20), transparent 35%),
+        radial-gradient(circle at 90% 15%, rgba(157,93,255,.12), transparent 30%),
         var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -58,6 +53,86 @@
       margin: 0 auto;
     }
 
+    /* =================================
+       MENU CHUNG - LOGO VÀ MENU CĂN ĐỀU
+       ================================= */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: rgba(8,11,22,.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      width: min(1200px, calc(100% - 32px));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-shrink: 0;
+      color: #f5c76a;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+
+    .logo img,
+    .logo .logo-img {
+      display: block;
+      width: 32px !important;
+      height: 32px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+      object-fit: contain;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-menu {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 8px;
+    }
+
+    .nav-menu a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      color: #d5d7e6;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus-visible {
+      color: var(--gold);
+      background: rgba(245,199,106,.08);
+      outline: none;
+    }
+
     /* HERO */
 
     .hero {
@@ -70,8 +145,8 @@
       align-items: center;
       gap: 8px;
       padding: 7px 15px;
-      border: 1px solid rgba(245, 199, 106, 0.25);
-      background: rgba(245, 199, 106, 0.07);
+      border: 1px solid rgba(245,199,106,.25);
+      background: rgba(245,199,106,.07);
       color: var(--gold);
       border-radius: 999px;
       font-size: 12px;
@@ -88,12 +163,7 @@
     }
 
     .gradient-text {
-      background: linear-gradient(
-        90deg,
-        #f5c76a,
-        #fff0bc,
-        #85b9ff
-      );
+      background: linear-gradient(90deg, #f5c76a, #fff0bc, #85b9ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -119,19 +189,15 @@
     .service {
       text-align: center;
       padding: 25px 14px;
-      background: linear-gradient(
-        145deg,
-        rgba(24, 34, 58, 0.95),
-        rgba(17, 24, 43, 0.95)
-      );
+      background: linear-gradient(145deg, rgba(24,34,58,.95), rgba(17,24,43,.95));
       border: 1px solid var(--border);
       border-radius: 18px;
-      transition: transform 0.25s, border-color 0.25s;
+      transition: transform .25s, border-color .25s;
     }
 
     .service:hover {
       transform: translateY(-5px);
-      border-color: rgba(245, 199, 106, 0.4);
+      border-color: rgba(245,199,106,.4);
     }
 
     .service-icon {
@@ -180,10 +246,7 @@
       background: var(--panel);
       border: 1px solid var(--border);
       text-decoration: none;
-      transition:
-        transform 0.25s,
-        border-color 0.25s,
-        background 0.25s;
+      transition: transform .25s, border-color .25s, background .25s;
       min-width: 0;
     }
 
@@ -212,7 +275,7 @@
       justify-content: center;
       flex-shrink: 0;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,.06);
       font-size: 25px;
     }
 
@@ -244,9 +307,9 @@
     .notice {
       padding: 25px;
       margin-bottom: 35px;
-      border: 1px solid rgba(245, 199, 106, 0.2);
+      border: 1px solid rgba(245,199,106,.2);
       border-radius: 18px;
-      background: rgba(245, 199, 106, 0.045);
+      background: rgba(245,199,106,.045);
     }
 
     .notice h3 {
@@ -280,12 +343,12 @@
       text-decoration: none;
       font-weight: 900;
       font-size: 14px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform .2s, box-shadow .2s;
     }
 
     .back-home:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(245, 199, 106, 0.2);
+      box-shadow: 0 8px 28px rgba(245,199,106,.2);
     }
 
     /* FOOTER */
@@ -294,7 +357,7 @@
       padding: 30px 16px;
       text-align: center;
       border-top: 1px solid var(--border);
-      background: rgba(5, 8, 17, 0.65);
+      background: rgba(5,8,17,.65);
       color: var(--muted);
       font-size: 13px;
       line-height: 2;
@@ -305,29 +368,15 @@
       font-size: 16px;
     }
 
-    /* RESPONSIVE */
+    /* TABLET */
 
-    @media (max-width: 760px) {
+    @media (max-width: 900px) {
       .navbar {
-        min-height: 64px;
-        gap: 8px;
+        gap: 10px;
       }
 
       .logo {
-        gap: 6px;
-      }
-
-      .logo img,
-      .logo-img {
-        width: 28px !important;
-        height: 28px !important;
-        max-width: 28px !important;
-        max-height: 28px !important;
-      }
-
-      .logo span,
-      .logo-text {
-        font-size: 13px;
+        font-size: 15px;
       }
 
       .nav-menu {
@@ -335,12 +384,58 @@
       }
 
       .nav-menu a {
-        padding: 8px 6px;
+        padding: 9px 7px;
+        font-size: 12px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .navbar {
+        min-height: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 0 8px;
+      }
+
+      .logo {
+        justify-content: center;
+        font-size: 15px;
+      }
+
+      .logo img,
+      .logo .logo-img {
+        width: 28px !important;
+        height: 28px !important;
+        max-width: 28px !important;
+        max-height: 28px !important;
+      }
+
+      .nav-menu {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2px;
+      }
+
+      .nav-menu a {
+        flex: 1 1 auto;
+        padding: 7px 4px;
         font-size: 11px;
       }
 
       .hero {
-        padding-top: 60px;
+        padding: 55px 0 35px;
+      }
+
+      .hero h1 {
+        letter-spacing: -.5px;
       }
 
       .services {
@@ -349,40 +444,12 @@
         margin-bottom: 55px;
       }
 
-      .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
       .contact-card {
         padding: 21px 18px;
       }
-    }
 
-    @media (max-width: 420px) {
-      .navbar {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 10px 0;
-      }
-
-      .logo {
-        justify-content: center;
-      }
-
-      .nav-menu {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-
-      .nav-menu a {
-        padding: 7px 5px;
-        font-size: 11px;
-      }
-
-      .hero h1 {
-        letter-spacing: -0.5px;
+      .notice {
+        padding: 20px;
       }
     }
 
@@ -395,8 +462,6 @@
       }
     }
   </style>
-
-  <script src="menu.js" defer></script>
 </head>
 
 <body>
@@ -406,7 +471,6 @@
 
   <main class="container">
 
-    <!-- HERO -->
     <section class="hero" id="trangchu">
       <div class="hero-label">
         <span>✦</span>
@@ -425,7 +489,6 @@
       </p>
     </section>
 
-    <!-- SERVICES -->
     <section class="services" aria-label="Dịch vụ hỗ trợ">
       <div class="service">
         <div class="service-icon">🤖</div>
@@ -448,19 +511,14 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
       <div class="section-heading">
         <h2>📞 Kênh liên hệ</h2>
-        <p>
-          Chọn một kênh bên dưới để kết nối
-          với bộ phận hỗ trợ.
-        </p>
+        <p>Chọn một kênh bên dưới để kết nối với bộ phận hỗ trợ.</p>
       </div>
 
       <div class="contact-grid">
 
-        <!-- FACEBOOK -->
         <a
           class="contact-card facebook"
           href="https://www.facebook.com/share/14wNcdmRKuF/"
@@ -476,7 +534,6 @@
           </div>
         </a>
 
-        <!-- ZALO -->
         <a
           class="contact-card zalo"
           href="https://zalo.me/0776912430"
@@ -492,7 +549,6 @@
           </div>
         </a>
 
-        <!-- EMAIL -->
         <a
           class="contact-card email"
           href="mailto:tranvantoan4200@gmail.com"
@@ -509,7 +565,6 @@
       </div>
     </section>
 
-    <!-- NOTICE -->
     <section class="notice">
       <h3>📌 Lưu ý khi yêu cầu hỗ trợ</h3>
       <p>
@@ -520,7 +575,6 @@
       </p>
     </section>
 
-    <!-- BACK HOME -->
     <div class="back-home-wrap">
       <a class="back-home" href="index.html">
         ← Quay lại trang chủ
@@ -529,7 +583,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <strong>⚔ TOOL TRU THẦN</strong>
     <br>
@@ -545,3 +598,4 @@
 
 </body>
 </html>
+```
