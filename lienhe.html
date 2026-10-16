@@ -1,10 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-
   <meta name="description" content="Liên hệ Tool Tru Thần - Hỗ trợ bot, fix lỗi, cài đặt và cấp key bản quyền.">
 
   <title>Liên hệ | TOOL TRU THẦN</title>
@@ -59,45 +59,53 @@
       margin: 0 auto;
     }
 
-    /* HEADER */
+    /* MENU DÙNG CHUNG */
 
     .header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(8, 12, 24, 0.92);
+      z-index: 1000;
+      background: rgba(8, 12, 24, 0.94);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     .navbar {
-      min-height: 76px;
+      width: min(1100px, calc(100% - 32px));
+      min-height: 68px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
     }
 
     .logo {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       color: var(--text);
       text-decoration: none;
       font-weight: 900;
       flex-shrink: 0;
+      min-width: 0;
     }
 
+    .logo img,
     .logo-img {
-      width: 44px;
-      height: 44px;
+      display: block;
+      width: 30px !important;
+      height: 30px !important;
+      max-width: 30px !important;
+      max-height: 30px !important;
       object-fit: contain;
       flex-shrink: 0;
     }
 
+    .logo span,
     .logo-text {
-      font-size: 19px;
-      letter-spacing: 0.3px;
+      font-size: 17px;
+      letter-spacing: 0.2px;
       white-space: nowrap;
     }
 
@@ -106,19 +114,25 @@
     }
 
     .nav-menu {
+      flex: 1;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
+      justify-content: space-evenly;
+      gap: 6px;
+      min-width: 0;
     }
 
     .nav-menu a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
       color: var(--muted);
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 9px 10px;
+      border-radius: 9px;
+      font-size: 13px;
       font-weight: 700;
+      white-space: nowrap;
       transition: 0.2s;
     }
 
@@ -250,8 +264,10 @@
       background: var(--panel);
       border: 1px solid var(--border);
       text-decoration: none;
-      transition: transform 0.25s, border-color 0.25s,
-                  background 0.25s;
+      transition:
+        transform 0.25s,
+        border-color 0.25s,
+        background 0.25s;
       min-width: 0;
     }
 
@@ -269,7 +285,7 @@
     }
 
     .email:hover {
-      border-color: #f5c76a;
+      border-color: var(--gold);
     }
 
     .contact-icon {
@@ -377,21 +393,25 @@
 
     @media (max-width: 760px) {
       .navbar {
-        min-height: 70px;
-        gap: 10px;
+        min-height: 64px;
+        gap: 8px;
       }
 
       .logo {
-        gap: 7px;
+        gap: 6px;
       }
 
+      .logo img,
       .logo-img {
-        width: 36px;
-        height: 36px;
+        width: 28px !important;
+        height: 28px !important;
+        max-width: 28px !important;
+        max-height: 28px !important;
       }
 
+      .logo span,
       .logo-text {
-        font-size: 15px;
+        font-size: 13px;
       }
 
       .nav-menu {
@@ -399,8 +419,8 @@
       }
 
       .nav-menu a {
-        padding: 9px 8px;
-        font-size: 12px;
+        padding: 8px 6px;
+        font-size: 11px;
       }
 
       .hero {
@@ -423,19 +443,30 @@
       }
     }
 
-    @media (max-width: 380px) {
-      .logo-text {
-        font-size: 13px;
+    @media (max-width: 420px) {
+      .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 0;
       }
 
-      .logo-img {
-        width: 30px;
-        height: 30px;
+      .logo {
+        justify-content: center;
+      }
+
+      .nav-menu {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
       }
 
       .nav-menu a {
-        padding: 8px 6px;
+        padding: 7px 5px;
         font-size: 11px;
+      }
+
+      .hero h1 {
+        letter-spacing: -0.5px;
       }
     }
 
@@ -448,23 +479,19 @@
       }
     }
   </style>
+
+  <script src="menu.js" defer></script>
 </head>
 
 <body>
 
-  <body>
-
-  <!-- THANH MENU DÙNG CHUNG -->
+  <!-- MENU ĐƯỢC TẢI TỪ menu.html -->
   <div id="site-menu"></div>
-  <script src="menu.js"></script>
-
-  <main>
 
   <main class="container">
 
     <!-- HERO -->
     <section class="hero" id="trangchu">
-
       <div class="hero-label">
         <span>✦</span>
         TRUNG TÂM HỖ TRỢ
@@ -480,15 +507,10 @@
         Liên hệ với chúng tôi để được hỗ trợ bot,
         fix lỗi, cài đặt công cụ và cấp key bản quyền.
       </p>
-
     </section>
 
     <!-- SERVICES -->
-    <section
-      class="services"
-      aria-label="Dịch vụ hỗ trợ"
-    >
-
+    <section class="services" aria-label="Dịch vụ hỗ trợ">
       <div class="service">
         <div class="service-icon">🤖</div>
         <h3>Hỗ trợ bot</h3>
@@ -508,12 +530,10 @@
         <div class="service-icon">🔑</div>
         <h3>Cấp key</h3>
       </div>
-
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
-
       <div class="section-heading">
         <h2>📞 Kênh liên hệ</h2>
         <p>
@@ -533,17 +553,10 @@
           aria-label="Liên hệ qua Facebook"
         >
           <div class="contact-icon">📘</div>
-
           <div class="contact-info">
             <h3>Facebook</h3>
-
-            <p>
-              Nhắn tin để được tư vấn và hỗ trợ.
-            </p>
-
-            <span class="contact-action">
-              Mở Facebook ↗
-            </span>
+            <p>Nhắn tin để được tư vấn và hỗ trợ.</p>
+            <span class="contact-action">Mở Facebook ↗</span>
           </div>
         </a>
 
@@ -556,17 +569,10 @@
           aria-label="Liên hệ qua Zalo"
         >
           <div class="contact-icon">💬</div>
-
           <div class="contact-info">
             <h3>Zalo</h3>
-
-            <p>
-              Trao đổi về bot, cài đặt và sửa lỗi.
-            </p>
-
-            <span class="contact-action">
-              Mở Zalo ↗
-            </span>
+            <p>Trao đổi về bot, cài đặt và sửa lỗi.</p>
+            <span class="contact-action">Mở Zalo ↗</span>
           </div>
         </a>
 
@@ -577,36 +583,25 @@
           aria-label="Liên hệ qua Email"
         >
           <div class="contact-icon">✉️</div>
-
           <div class="contact-info">
             <h3>Email</h3>
-
-            <p>
-              tranvantoan4200@gmail.com
-            </p>
-
-            <span class="contact-action">
-              Gửi email ↗
-            </span>
+            <p>tranvantoan4200@gmail.com</p>
+            <span class="contact-action">Gửi email ↗</span>
           </div>
         </a>
 
       </div>
-
     </section>
 
     <!-- NOTICE -->
     <section class="notice">
-
       <h3>📌 Lưu ý khi yêu cầu hỗ trợ</h3>
-
       <p>
         Vui lòng cung cấp nền tảng đang sử dụng,
         phiên bản bot và mô tả lỗi gặp phải để được
         hỗ trợ nhanh hơn. Không gửi mật khẩu tài khoản
         game hoặc thông tin đăng nhập nhạy cảm.
       </p>
-
     </section>
 
     <!-- BACK HOME -->
@@ -622,12 +617,9 @@
   <footer>
     <strong>⚔ TOOL TRU THẦN</strong>
     <br>
-
     Hỗ trợ bot · Fix lỗi · Cài đặt · Cấp key
     <br>
-
-    © <span id="year"></span>
-    Tool Tru Thần. All rights reserved.
+    © <span id="year"></span> TOOL TRU THẦN. All rights reserved.
   </footer>
 
   <script>
@@ -637,3 +629,4 @@
 
 </body>
 </html>
+```
