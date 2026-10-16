@@ -190,17 +190,25 @@
       margin: auto;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 6px 13px;
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      color: var(--gold2);
-      background: rgba(229, 189, 112, .06);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-    }
+    
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+  padding: 8px 16px;
+  min-height: 34px;
+  line-height: 1.4;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  color: var(--gold2);
+  background: rgba(229, 189, 112, .06);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  vertical-align: middle;
+}
+
 
     .hero h1 {
       margin: 24px 0 18px;
@@ -546,14 +554,6 @@
         font-size: 12px;
         padding: 8px;
       }
-      .tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px; /* Trên dưới 8px, trái phải 16px */
-  line-height: 1.4;
-  box-sizing: border-box;
-}
     }
   </style>
 </head>
