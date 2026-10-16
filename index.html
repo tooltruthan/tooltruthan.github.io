@@ -29,24 +29,23 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* THANH ĐIỀU HƯỚNG */
+    /* THANH HEADER */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
       width: 100%;
       min-height: 68px;
-      padding: 12px 6%;
+      padding: 12px 5%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
       border-bottom: 1px solid #303147;
       background: rgba(21, 22, 38, 0.97);
       backdrop-filter: blur(12px);
     }
 
-    /* CHỈ HIỆN LOGO, KHÔNG HIỆN CHỮ CẠNH LOGO */
+    /* LOGO BÊN TRÁI */
     .logo {
       display: flex;
       align-items: center;
@@ -61,20 +60,25 @@
       object-fit: contain;
     }
 
-    /* MENU */
+    /* BA MENU CHIA ĐỀU TOÀN BỘ PHẦN CÒN LẠI */
     nav {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 24px;
+      flex: 1;
+      min-width: 0;
+      justify-content: space-evenly;
     }
 
     nav a {
+      flex: 1;
+      min-width: 0;
+      text-align: center;
       color: #ddd9ef;
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
       white-space: nowrap;
+      padding: 12px 2px;
       transition: color 0.2s;
     }
 
@@ -186,7 +190,7 @@
       max-width: 600px;
     }
 
-    /* THẺ CÔNG CỤ */
+    /* DANH SÁCH CÔNG CỤ */
     .tools-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -272,6 +276,10 @@
       background: #151626;
     }
 
+    footer p {
+      margin: 5px 0;
+    }
+
     footer a {
       color: #c5a7ff;
       text-decoration: none;
@@ -280,9 +288,9 @@
     /* ĐIỆN THOẠI */
     @media (max-width: 480px) {
       header {
-        min-height: 60px;
-        padding: 10px 14px;
-        gap: 10px;
+        min-height: 58px;
+        padding: 9px 10px;
+        gap: 8px;
       }
 
       .logo-img {
@@ -291,11 +299,13 @@
       }
 
       nav {
-        gap: clamp(9px, 3vw, 14px);
+        flex: 1;
+        width: 100%;
       }
 
       nav a {
         font-size: 12px;
+        padding: 10px 1px;
       }
 
       .hero {
@@ -332,20 +342,16 @@
       }
     }
 
-    /* MÀN HÌNH RẤT NHỎ */
+    /* ĐIỆN THOẠI MÀN HÌNH NHỎ */
     @media (max-width: 350px) {
       header {
-        padding: 10px;
-        gap: 8px;
+        padding: 8px;
+        gap: 5px;
       }
 
       .logo-img {
-        width: 30px;
-        height: 30px;
-      }
-
-      nav {
-        gap: 8px;
+        width: 29px;
+        height: 29px;
       }
 
       nav a {
@@ -357,10 +363,14 @@
 
 <body>
 
-  <!-- THANH MENU -->
+  <!-- HEADER: LOGO + 3 MENU -->
   <header>
-    <a class="logo" href="index.html" aria-label="Trang chủ Tool Tru Thần">
-      <img src="./logo.png" alt="Logo Tru Thần" class="logo-img">
+    <a class="logo" href="index.html" aria-label="Trang chủ">
+      <img
+        src="./logo.png"
+        alt="Logo Tru Thần"
+        class="logo-img"
+      >
     </a>
 
     <nav aria-label="Menu chính">
@@ -370,7 +380,7 @@
     </nav>
   </header>
 
-  <!-- TRANG CHỦ -->
+  <!-- KHU VỰC TRANG CHỦ -->
   <section class="hero" id="trang-chu">
     <span class="tag">⚔ CỘNG ĐỒNG GAME THỦ TRU THẦN</span>
 
@@ -384,15 +394,18 @@
 
     <div class="actions">
       <a href="#cong-cu" class="btn">Khám phá công cụ</a>
-      <a href="lienhe.html" class="btn secondary">Liên hệ hỗ trợ</a>
+      <a href="lienhe.html" class="btn secondary">
+        Liên hệ hỗ trợ
+      </a>
     </div>
   </section>
 
-  <!-- DANH SÁCH CÔNG CỤ -->
+  <!-- KHU VỰC CÔNG CỤ -->
   <main>
     <section id="cong-cu">
       <div class="section-heading">
         <h2>Công cụ hỗ trợ</h2>
+
         <p class="section-description">
           Quản lý và truy cập các tiện ích dành cho game thủ Tru Thần
           trên điện thoại và máy tính.
@@ -418,7 +431,7 @@
           <h3>Hỗ trợ điện thoại</h3>
           <p>
             Thông tin sử dụng công cụ trên thiết bị di động.
-            Vui lòng kiểm tra khả năng tương thích trước khi dùng.
+            Kiểm tra khả năng tương thích trước khi sử dụng.
           </p>
           <a href="lienhe.html" class="tool-link">
             Xem hướng dẫn →
@@ -439,7 +452,7 @@
 
         <article class="tool-card">
           <div class="tool-icon">🛡️</div>
-          <h3>Hỗ trợ & hướng dẫn</h3>
+          <h3>Hỗ trợ &amp; hướng dẫn</h3>
           <p>
             Tra cứu thông tin, cách sử dụng và liên hệ
             khi gặp vấn đề trong quá trình sử dụng.
