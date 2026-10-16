@@ -1,15 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10111b">
-  <meta name="description" content="Tool Tru Thần - Công cụ hỗ trợ game mọi nền tảng">
-
+  <meta name="description" content="Tool Tru Thần - Công cụ hỗ trợ game Tru Thần trên điện thoại và máy tính">
+  <title>TOOL TRU THẦN - Đồng hành tu luyện</title>
 
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
     body {
@@ -19,28 +25,64 @@
       background: #10111b;
     }
 
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* THANH ĐIỀU HƯỚNG */
     header {
-      padding: 18px 6%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      min-height: 68px;
+      padding: 12px 6%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
       border-bottom: 1px solid #303147;
-      background: #151626;
+      background: rgba(21, 22, 38, 0.97);
+      backdrop-filter: blur(12px);
     }
 
+    /* CHỈ HIỆN LOGO, KHÔNG HIỆN CHỮ CẠNH LOGO */
     .logo {
-      font-size: 21px;
-      font-weight: 800;
-      color: #c5a7ff;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      display: block;
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    /* MENU */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
     }
 
     nav a {
       color: #ddd9ef;
       text-decoration: none;
-      margin-left: 15px;
       font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: color 0.2s;
     }
 
+    nav a:hover {
+      color: #c5a7ff;
+    }
+
+    /* PHẦN GIỚI THIỆU */
     .hero {
       padding: 76px 20px 65px;
       text-align: center;
@@ -59,18 +101,22 @@
       border-radius: 30px;
       color: #ddc8ff;
       font-size: 12px;
+      letter-spacing: 0.5px;
     }
 
     h1 {
-      font-size: clamp(34px, 7vw, 58px);
-      margin: 23px 0 12px;
+      font-size: clamp(32px, 7vw, 58px);
+      line-height: 1.2;
+      margin: 23px 0 16px;
+      color: #f2eaff;
     }
 
     .hero p {
-      max-width: 600px;
+      max-width: 620px;
       margin: 0 auto;
       line-height: 1.8;
       color: #c4c0d5;
+      font-size: 15px;
     }
 
     .actions {
@@ -82,214 +128,350 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 45px;
       padding: 13px 20px;
       border-radius: 10px;
       text-decoration: none;
+      font-size: 14px;
       font-weight: bold;
       border: 1px solid #7960a9;
       color: white;
       background: #7650bd;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #8962d1;
+      transform: translateY(-2px);
     }
 
     .btn.secondary {
       background: transparent;
     }
 
+    .btn.secondary:hover {
+      background: #25213a;
+    }
+
+    /* NỘI DUNG CHÍNH */
     main {
       max-width: 1000px;
       margin: auto;
-      padding: 38px 18px;
+      padding: 38px 18px 55px;
+    }
+
+    section {
+      scroll-margin-top: 85px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 28px;
     }
 
     h2 {
       font-size: 25px;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
+      color: #e7d8ff;
     }
 
-    .muted {
-      color: #aaa8c0;
-      line-height: 1.7;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(220px, 1fr)
-      );
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .card {
-      padding: 22px;
-      border: 1px solid #34334d;
-      border-radius: 15px;
-      background: #191a2a;
-    }
-
-    .symbol {
-      font-size: 30px;
-    }
-
-    .card h3 {
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      color: #b6b3ca;
-      line-height: 1.7;
+    .section-description {
+      color: #aaa7bf;
       font-size: 14px;
-    }
-
-    .status {
-      color: #e9ca80;
-      font-size: 13px;
-    }
-
-    .notice {
-      padding: 18px;
-      border-left: 3px solid #a78bfa;
-      background: #1a192b;
-      color: #cbc6df;
       line-height: 1.7;
-      border-radius: 6px;
+      margin: 0 auto;
+      max-width: 600px;
     }
 
-    footer {
+    /* THẺ CÔNG CỤ */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .tool-card {
+      padding: 24px;
+      background: #181929;
+      border: 1px solid #303147;
+      border-radius: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+      min-width: 0;
+    }
+
+    .tool-card:hover {
+      border-color: #7960a9;
+      transform: translateY(-3px);
+    }
+
+    .tool-icon {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: #29213e;
+      font-size: 23px;
+      margin-bottom: 16px;
+    }
+
+    .tool-card h3 {
+      font-size: 18px;
+      margin: 0 0 10px;
+      color: #eee5ff;
+    }
+
+    .tool-card p {
+      color: #b6b2ca;
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0 0 18px;
+    }
+
+    .tool-link {
+      display: inline-block;
+      color: #c5a7ff;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .tool-link:hover {
+      color: #e1d0ff;
+    }
+
+    /* GIỚI THIỆU THÊM */
+    .about {
+      margin-top: 42px;
+      padding: 25px;
+      border: 1px solid #303147;
+      background: #181929;
+      border-radius: 16px;
       text-align: center;
-      padding: 28px 15px;
-      border-top: 1px solid #303147;
-      color: #9997ad;
-      font-size: 13px;
     }
 
+    .about p {
+      color: #b6b2ca;
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* CHÂN TRANG */
+    footer {
+      padding: 25px 18px;
+      border-top: 1px solid #303147;
+      text-align: center;
+      color: #9692ad;
+      font-size: 13px;
+      line-height: 1.8;
+      background: #151626;
+    }
+
+    footer a {
+      color: #c5a7ff;
+      text-decoration: none;
+    }
+
+    /* ĐIỆN THOẠI */
     @media (max-width: 480px) {
+      header {
+        min-height: 60px;
+        padding: 10px 14px;
+        gap: 10px;
+      }
+
+      .logo-img {
+        width: 34px;
+        height: 34px;
+      }
+
+      nav {
+        gap: clamp(9px, 3vw, 14px);
+      }
+
       nav a {
-        margin-left: 8px;
         font-size: 12px;
       }
 
-      header {
-        padding: 16px 4%;
-      }
-
       .hero {
-        padding-top: 55px;
+        padding: 58px 18px 48px;
       }
-      
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
-.logo-img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
+      h1 {
+        font-size: clamp(30px, 8vw, 38px);
+      }
 
+      .hero p {
+        font-size: 14px;
+      }
+
+      main {
+        padding: 30px 14px 42px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .tool-card {
+        padding: 20px;
+      }
+
+      .about {
+        padding: 20px;
+      }
+    }
+
+    /* MÀN HÌNH RẤT NHỎ */
+    @media (max-width: 350px) {
+      header {
+        padding: 10px;
+        gap: 8px;
+      }
+
+      .logo-img {
+        width: 30px;
+        height: 30px;
+      }
+
+      nav {
+        gap: 8px;
+      }
+
+      nav a {
+        font-size: 11px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- THANH MENU -->
   <header>
-    <div class="logo">
-  <img src="logo.png" alt="Logo Tru Thần" class="logo-img">
-  <span>TOOL TRU THẦN</span>
-</div>
-      <nav>
-  <a href="#home">Trang chủ</a>
-  <a href="#tools">Công cụ</a>
-  <a href="lienhe.html">Liên hệ</a>
-</nav>
+    <a class="logo" href="index.html" aria-label="Trang chủ Tool Tru Thần">
+      <img src="./logo.png" alt="Logo Tru Thần" class="logo-img">
+    </a>
+
+    <nav aria-label="Menu chính">
+      <a href="index.html">Trang chủ</a>
+      <a href="#cong-cu">Công cụ</a>
+      <a href="lienhe.html">Liên hệ</a>
     </nav>
   </header>
 
-  <section class="hero" id="home">
-    <span class="tag">JAVA J2ME • Android • PC • iOS</span>
+  <!-- TRANG CHỦ -->
+  <section class="hero" id="trang-chu">
+    <span class="tag">⚔ CỘNG ĐỒNG GAME THỦ TRU THẦN</span>
 
     <h1>TOOL TRU THẦN</h1>
 
-<p>
-  Đồng hành cùng game thủ Việt.<br>
-  Giao diện quản lý công cụ hỗ trợ game Tru Thần<br>
-  dành cho điện thoại và máy tính.
-</p>
-
+    <p>
+      Đồng hành cùng game thủ Việt.<br>
+      Giao diện quản lý công cụ hỗ trợ game Tru Thần<br>
+      dành cho điện thoại và máy tính.
+    </p>
 
     <div class="actions">
-      <a class="btn" href="#tools">Khám phá công cụ</a>
-      <a class="btn secondary" href="lienhe.html">Hỗ trợ</a>
+      <a href="#cong-cu" class="btn">Khám phá công cụ</a>
+      <a href="lienhe.html" class="btn secondary">Liên hệ hỗ trợ</a>
     </div>
   </section>
 
+  <!-- DANH SÁCH CÔNG CỤ -->
   <main>
-    
-    <section id="contact" style="margin-top:42px">
-      <h2>📜 Thông tin hệ thống</h2>
+    <section id="cong-cu">
+      <div class="section-heading">
+        <h2>Công cụ hỗ trợ</h2>
+        <p class="section-description">
+          Quản lý và truy cập các tiện ích dành cho game thủ Tru Thần
+          trên điện thoại và máy tính.
+        </p>
+      </div>
 
-      <div class="notice">
-        Website Tool Tru Thần.<br>
-        Hãy chỉ tải và sử dụng các tệp từ nguồn bạn tin cậy.
-        Hệ thống key, đăng nhập và quản lý thiết bị sẽ cần
-        được tích hợp với API máy chủ riêng.
+      <div class="tools-grid">
+
+        <article class="tool-card">
+          <div class="tool-icon">⚔️</div>
+          <h3>Tool Tru Thần</h3>
+          <p>
+            Khu vực giới thiệu và quản lý công cụ hỗ trợ
+            dành cho hành trình tu luyện của bạn.
+          </p>
+          <a href="lienhe.html" class="tool-link">
+            Tìm hiểu thêm →
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">📱</div>
+          <h3>Hỗ trợ điện thoại</h3>
+          <p>
+            Thông tin sử dụng công cụ trên thiết bị di động.
+            Vui lòng kiểm tra khả năng tương thích trước khi dùng.
+          </p>
+          <a href="lienhe.html" class="tool-link">
+            Xem hướng dẫn →
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">💻</div>
+          <h3>Hỗ trợ máy tính</h3>
+          <p>
+            Thông tin và hướng dẫn sử dụng trên máy tính,
+            giúp bạn thuận tiện hơn khi quản lý công cụ.
+          </p>
+          <a href="lienhe.html" class="tool-link">
+            Xem chi tiết →
+          </a>
+        </article>
+
+        <article class="tool-card">
+          <div class="tool-icon">🛡️</div>
+          <h3>Hỗ trợ & hướng dẫn</h3>
+          <p>
+            Tra cứu thông tin, cách sử dụng và liên hệ
+            khi gặp vấn đề trong quá trình sử dụng.
+          </p>
+          <a href="lienhe.html" class="tool-link">
+            Liên hệ ngay →
+          </a>
+        </article>
+
       </div>
     </section>
-    
-    <section id="tools">
-      <h2>⚡ Công cụ hỗ trợ</h2>
 
-      <p class="muted">
-        Các chức năng dự kiến của hệ thống.
+    <!-- GIỚI THIỆU -->
+    <section class="about">
+      <div class="section-heading">
+        <h2>Đồng hành trên hành trình tu luyện</h2>
+      </div>
+
+      <p>
+        TOOL TRU THẦN hướng đến trải nghiệm quản lý công cụ
+        đơn giản, dễ sử dụng và thuận tiện trên nhiều thiết bị.
+        Chúc bạn có những giây phút trải nghiệm game vui vẻ!
       </p>
-
-      <div class="grid">
-        <article class="card">
-          <div class="symbol">🗡️</div>
-          <h3>Auto Phụ Bản</h3>
-          <p>
-            Quản lý cấu hình tự động phụ bản
-            cho bot tương thích.
-          </p>
-          <span class="status">● Đang xây dựng</span>
-        </article>
-
-        <article class="card">
-          <div class="symbol">🔑</div>
-          <h3>Quản lý bản quyền</h3>
-          <p>
-            Khu vực dành cho hệ thống cấp key
-            và quản lý thiết bị.
-          </p>
-          <span class="status">● Chưa kết nối máy chủ</span>
-        </article>
-
-        <article class="card">
-          <div class="symbol">📦</div>
-          <h3>Tải công cụ</h3>
-          <p>
-            Vị trí dành cho liên kết tải JAR
-            và hướng dẫn cài đặt.
-          </p>
-          <span class="status">● Chưa có file tải</span>
-        </article>
-      </div>
     </section>
-    
   </main>
 
+  <!-- CHÂN TRANG -->
   <footer>
-    © <span id="year"></span> Tool Tru Thần
+    <p>© 2026 TOOL TRU THẦN</p>
+    <p>Đồng hành cùng game thủ Việt.</p>
+    <a href="lienhe.html">Liên hệ hỗ trợ</a>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
 </body>
 </html>
