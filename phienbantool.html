@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -8,6 +8,10 @@
 <meta name="description" content="Danh sách các phiên bản Tool Tru Thần: Auto phó bản, nhiệm vụ, train, săn boss và tool tích hợp.">
 
 <title>Phiên Bản Tool - TRU THẦN</title>
+
+<!-- TẢI MENU VÀ FOOTER DÙNG CHUNG -->
+<script src="menu.js" defer></script>
+<script src="footer.js" defer></script>
 
 <style>
 :root {
@@ -45,78 +49,42 @@ a {
   text-decoration: none;
 }
 
-/* THANH MENU */
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(16,17,27,.94);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-}
-
-.navbar {
-  width: min(1100px, 94%);
-  min-height: 70px;
-  margin: auto;
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-/* LOGO ĐÃ THU NHỎ */
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--gold);
-  font-size: 17px;
-  font-weight: 900;
-  letter-spacing: .5px;
+/* KHÓA LOGO MENU DÙNG CHUNG */
+#site-menu .header .navbar .logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
-.logo img {
-  display: block;
-  width: 36px;
-  height: 36px;
-  max-width: 36px;
-  object-fit: contain;
-  border-radius: 8px;
-  flex-shrink: 0;
+#site-menu .header .navbar .logo img,
+#site-menu .header .navbar .logo img.site-logo {
+  display: block !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  object-fit: contain !important;
+  flex: 0 0 30px !important;
 }
 
-/* MENU */
-
-.nav-menu {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 12px;
-}
-
-.nav-menu a {
-  padding: 9px 10px;
-  color: #dddbea;
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: .2s;
-}
-
-.nav-menu a:hover,
-.nav-menu a.active {
-  color: var(--gold);
+@media (max-width: 650px) {
+  #site-menu .header .navbar .logo img,
+  #site-menu .header .navbar .logo img.site-logo {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+    flex-basis: 28px !important;
+  }
 }
 
 /* TIÊU ĐỀ */
-
 .hero {
   max-width: 1000px;
   margin: auto;
@@ -150,7 +118,6 @@ h1 span {
 }
 
 /* KHU VỰC DANH SÁCH */
-
 .container {
   max-width: 1100px;
   width: 100%;
@@ -177,7 +144,6 @@ h1 span {
 }
 
 /* LƯỚI PHIÊN BẢN */
-
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -185,7 +151,6 @@ h1 span {
 }
 
 /* THẺ TOOL */
-
 .card {
   position: relative;
   overflow: hidden;
@@ -260,7 +225,6 @@ h1 span {
 }
 
 /* NÚT */
-
 .btn {
   display: block;
   width: 100%;
@@ -291,7 +255,6 @@ h1 span {
 }
 
 /* THÔNG BÁO */
-
 .notice {
   margin-top: 28px;
   padding: 18px;
@@ -307,93 +270,17 @@ h1 span {
   color: var(--gold);
 }
 
-/* CHÂN TRANG */
-
-footer {
-  border-top: 1px solid var(--line);
-  padding: 25px 20px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  background: #0b0c14;
-}
-
-footer p {
-  margin-top: 5px;
-}
-
-/* MÁY TÍNH BẢNG */
-
+/* TABLET */
 @media (max-width: 900px) {
-  .navbar {
-    gap: 12px;
-  }
-
-  .logo {
-    font-size: 15px;
-  }
-
-  .logo img {
-    width: 32px;
-    height: 32px;
-    max-width: 32px;
-  }
-
-  .nav-menu {
-    gap: 4px;
-  }
-
-  .nav-menu a {
-    font-size: 12px;
-    padding: 8px 6px;
-  }
-
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 /* ĐIỆN THOẠI */
-
 @media (max-width: 600px) {
-  .navbar {
-    width: 94%;
-    flex-direction: column;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 0;
-  }
-
-  .logo {
-    font-size: 16px;
-    gap: 8px;
-  }
-
-  .logo img {
-    width: 30px;
-    height: 30px;
-    max-width: 30px;
-  }
-
-  .nav-menu {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 2px;
-  }
-
-  .nav-menu a {
-    font-size: 11px;
-    padding: 7px 4px;
-  }
-
   .hero {
     padding: 48px 18px 28px;
-  }
-
-  .eyebrow {
-    font-size: 10px;
-    letter-spacing: 2px;
   }
 
   h1 {
@@ -435,18 +322,7 @@ footer p {
   }
 }
 
-/* ĐIỆN THOẠI MÀN HÌNH NHỎ */
-
 @media (max-width: 360px) {
-  .logo {
-    font-size: 14px;
-  }
-
-  .nav-menu a {
-    font-size: 10px;
-    padding: 7px 2px;
-  }
-
   .card {
     padding: 17px;
   }
@@ -461,12 +337,11 @@ footer p {
 
 <body>
 
-<!-- MENU DÙNG CHUNG: CHỈ GỌI MENU.JS MỘT LẦN -->
-  <div id="site-menu"></div>
+<!-- MENU DÙNG CHUNG: menu.js TỰ TẢI menu.html -->
+<div id="site-menu"></div>
 
 <!-- TIÊU ĐỀ -->
 <section class="hero">
-
   <h1>
     PHIÊN BẢN <span>TOOL</span>
   </h1>
@@ -487,8 +362,7 @@ footer p {
   </div>
 
   <div class="grid">
-    
-    <!-- BẢN 01 -->
+
     <article class="card featured">
       <div class="card-top">
         <span class="number">VERSION 01</span>
@@ -511,7 +385,6 @@ footer p {
 
   </div>
 
-  <!-- THÔNG BÁO -->
   <div class="notice">
     <strong>✦ Thông báo cập nhật</strong><br>
     Các phiên bản chưa có liên kết tải chính thức sẽ hiển thị trạng thái
@@ -523,7 +396,7 @@ footer p {
 
 <!-- CHÂN TRANG DÙNG CHUNG -->
 <div id="site-footer"></div>
-<script src="footer.js" defer></script>
 
 </body>
 </html>
+```
