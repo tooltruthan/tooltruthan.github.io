@@ -1,469 +1,662 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
 
-<!DOCTYPE html>  <html lang="vi">  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
-  <meta name="theme-color" content="#0b1020">  
-  <meta name="description" content="Liên hệ Tool Tru Thần - Hỗ trợ bot, fix lỗi, cài đặt và cấp key.">  
-  <title>Liên hệ | Tool Tru Thần</title>    <style>  
-    :root {  
-      --bg: #0b1020;  
-      --panel: #121a2d;  
-      --border: #293650;  
-      --text: #f4f6ff;  
-      --muted: #a6b1c8;  
-      --primary: #9b87ff;  
-    }  
-  
-    * {  
-      box-sizing: border-box;  
-    }  
-  
-    body {  
-      margin: 0;  
-      min-height: 100vh;  
-      font-family: Arial, Helvetica, sans-serif;  
-      color: var(--text);  
-      background:  
-        radial-gradient(  
-          circle at 50% 0%,  
-          rgba(113, 88, 232, 0.2),  
-          transparent 40%  
-        ),  
-        var(--bg);  
-    }  
-  
-    a {  
-      -webkit-tap-highlight-color: transparent;  
-    }  
-  
-    .container {  
-      width: min(100% - 32px, 900px);  
-      margin: 0 auto;  
-    }  
-  
-    header {  
-      background: rgba(11, 16, 32, 0.94);  
-      border-bottom: 1px solid var(--border);  
-    }  
-  
-    .header-inner {  
-      min-height: 72px;  
-      display: flex;  
-      align-items: center;  
-      justify-content: space-between;  
-      gap: 12px;  
-    }  
-  
-    .logo {  
-      display: flex;  
-      align-items: center;  
-      gap: 10px;  
-      color: var(--text);  
-      text-decoration: none;  
-      font-weight: 800;  
-      font-size: 18px;  
-    }  
-  
-    .logo-icon {  
-      width: 40px;  
-      height: 40px;  
-      display: grid;  
-      place-items: center;  
-      border-radius: 12px;  
-      background: linear-gradient(135deg, #9b87ff, #5943c9);  
-      font-size: 22px;  
-    }  
-  
-    .back-link {  
-      color: #d4cbff;  
-      text-decoration: none;  
-      font-size: 14px;  
-      font-weight: 600;  
-    }  
-  
-    .hero {  
-      padding: 65px 0 38px;  
-      text-align: center;  
-    }  
-  
-    .badge {  
-      display: inline-flex;  
-      align-items: center;  
-      gap: 8px;  
-      padding: 9px 14px;  
-      color: #d4cbff;  
-      background: rgba(155, 135, 255, 0.09);  
-      border: 1px solid rgba(155, 135, 255, 0.3);  
-      border-radius: 50px;  
-      font-size: 12px;  
-      font-weight: 700;  
-      letter-spacing: 1px;  
-    }  
-  
-    .badge-dot {  
-      width: 7px;  
-      height: 7px;  
-      border-radius: 50%;  
-      background: #48d6a0;  
-    }  
-  
-    h1 {  
-      margin: 22px 0 14px;  
-      font-size: clamp(32px, 6vw, 50px);  
-      line-height: 1.2;  
-    }  
-  
-    .gradient-text {  
-      color: #ad9bff;  
-    }  
-  
-    .hero-description {  
-      max-width: 620px;  
-      margin: 0 auto;  
-      color: var(--muted);  
-      font-size: 15px;  
-      line-height: 1.9;  
-    }  
-  
-    .services {  
-      display: grid;  
-      grid-template-columns: repeat(4, minmax(0, 1fr));  
-      gap: 12px;  
-      margin: 18px 0 45px;  
-    }  
-  
-    .service {  
-      padding: 20px 10px;  
-      text-align: center;  
-      background: var(--panel);  
-      border: 1px solid var(--border);  
-      border-radius: 14px;  
-    }  
-  
-    .service-icon {  
-      font-size: 27px;  
-      margin-bottom: 10px;  
-    }  
-  
-    .service h3 {  
-      margin: 0;  
-      font-size: 14px;  
-    }  
-  
-    .section-heading {  
-      margin-bottom: 22px;  
-    }  
-  
-    .section-heading h2 {  
-      margin: 0 0 9px;  
-      font-size: 25px;  
-    }  
-  
-    .section-heading p {  
-      margin: 0;  
-      color: var(--muted);  
-      font-size: 14px;  
-      line-height: 1.8;  
-    }  
-  
-    .contact-grid {  
-      display: grid;  
-      grid-template-columns: repeat(2, minmax(0, 1fr));  
-      gap: 16px;  
-    }  
-  
-    .contact-card {  
-      display: flex;  
-      align-items: center;  
-      gap: 15px;  
-      min-width: 0;  
-      padding: 22px;  
-      color: var(--text);  
-      text-decoration: none;  
-      background: var(--panel);  
-      border: 1px solid var(--border);  
-      border-radius: 16px;  
-      transition: transform 0.2s, background 0.2s,  
-                  border-color 0.2s;  
-    }  
-  
-    .contact-card:hover {  
-      transform: translateY(-3px);  
-      background: #19243b;  
-      border-color: var(--primary);  
-    }  
-  
-    .contact-icon {  
-      width: 52px;  
-      height: 52px;  
-      flex-shrink: 0;  
-      display: grid;  
-      place-items: center;  
-      border-radius: 14px;  
-      font-size: 25px;  
-    }  
-  
-    .facebook .contact-icon {  
-      background: rgba(65, 130, 255, 0.16);  
-    }  
-  
-    .zalo .contact-icon {  
-      background: rgba(50, 155, 255, 0.16);  
-    }  
-  
-    .email .contact-icon {  
-      background: rgba(155, 135, 255, 0.16);  
-    }  
-  
-    .contact-info {  
-      min-width: 0;  
-    }  
-  
-    .contact-info h3 {  
-      margin: 0 0 7px;  
-      font-size: 17px;  
-    }  
-  
-    .contact-info p {  
-      margin: 0;  
-      color: var(--muted);  
-      font-size: 13px;  
-      line-height: 1.7;  
-      overflow-wrap: anywhere;  
-    }  
-  
-    .contact-action {  
-      display: inline-block;  
-      margin-top: 9px;  
-      color: #b9aaff;  
-      font-size: 12px;  
-      font-weight: 700;  
-    }  
-  
-    .notice {  
-      margin-top: 30px;  
-      padding: 22px;  
-      border: 1px solid rgba(155, 135, 255, 0.25);  
-      border-radius: 15px;  
-      background: rgba(155, 135, 255, 0.06);  
-    }  
-  
-    .notice h3 {  
-      margin: 0 0 10px;  
-      font-size: 16px;  
-    }  
-  
-    .notice p {  
-      margin: 0;  
-      color: var(--muted);  
-      font-size: 14px;  
-      line-height: 1.9;  
-    }  
-  
-    .back-home {  
-      display: inline-block;  
-      margin-top: 30px;  
-      padding: 13px 21px;  
-      border-radius: 10px;  
-      color: white;  
-      background: linear-gradient(135deg, #8e79ff, #654cdb);  
-      text-decoration: none;  
-      font-size: 14px;  
-      font-weight: 700;  
-    }  
-  
-    footer {  
-      margin-top: 60px;  
-      padding: 25px 15px;  
-      text-align: center;  
-      border-top: 1px solid var(--border);  
-      color: #7f8aa5;  
-      font-size: 13px;  
-      line-height: 1.9;  
-    }  
-  
-    footer strong {  
-      color: #c6baff;  
-    }  
-  
-    @media (max-width: 600px) {  
-      .header-inner {  
-        min-height: 64px;  
-      }  
-  
-      .logo {  
-        font-size: 14px;  
-      }  
-  
-      .logo-icon {  
-        width: 35px;  
-        height: 35px;  
-        font-size: 19px;  
-      }  
-  
-      .back-link {  
-        font-size: 12px;  
-      }  
-  
-      .hero {  
-        padding-top: 48px;  
-      }  
-  
-      .hero-description {  
-        font-size: 14px;  
-      }  
-  
-      .services {  
-        grid-template-columns: repeat(2, minmax(0, 1fr));  
-        gap: 10px;  
-        margin-bottom: 38px;  
-      }  
-  
-      .contact-grid {  
-        grid-template-columns: 1fr;  
-        gap: 12px;  
-      }  
-  
-      .contact-card {  
-        padding: 18px;  
-      }  
-  
-      .section-heading h2 {  
-        font-size: 22px;  
-      }  
-  
-      .notice {  
-        padding: 18px;  
-      }  
-    }  
-  </style>  </head>  <body>    <header>  
-    <div class="container header-inner">  
-      <a class="logo" href="index.html">  
-        <span class="logo-icon">⚔</span>  
-        <span>TOOL TRU THẦN</span>  
-      </a>  <a class="back-link" href="index.html">  
-    ← Trang chủ  
-  </a>  
-</div>
+  <meta name="description" content="Liên hệ Tool Tru Thần - Hỗ trợ bot, fix lỗi, cài đặt và cấp key bản quyền.">
 
-  </header>    <main class="container">  <section class="hero">  
-  <span class="badge">  
-    <span class="badge-dot"></span>  
-    TRUNG TÂM HỖ TRỢ  
-  </span>  
+  <title>Liên hệ | TOOL TRU THẦN</title>
 
-  <h1>  
-    Chúng tôi luôn sẵn sàng<br>  
-    <span class="gradient-text">hỗ trợ bạn</span>  
-  </h1>  
+  <style>
+    :root {
+      --bg: #080c18;
+      --panel: #11182b;
+      --panel-light: #18223a;
+      --text: #f4f6ff;
+      --muted: #a6b0c8;
+      --gold: #f5c76a;
+      --blue: #65a8ff;
+      --border: rgba(255, 255, 255, 0.09);
+    }
 
-  <p class="hero-description">  
-    Gặp vấn đề khi sử dụng bot Tru Thần?  
-    Liên hệ với chúng tôi để được hỗ trợ bot,  
-    fix lỗi, cài đặt công cụ và cấp key bản quyền.  
-  </p>  
-</section>  
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<section class="services" aria-label="Dịch vụ hỗ trợ">  
-  <div class="service">  
-    <div class="service-icon">🤖</div>  
-    <h3>Hỗ trợ bot</h3>  
-  </div>  
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <div class="service">  
-    <div class="service-icon">🛠️</div>  
-    <h3>Fix lỗi</h3>  
-  </div>  
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at 15% 0%,
+          rgba(61, 91, 170, 0.20),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(157, 93, 255, 0.12),
+          transparent 30%
+        ),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
 
-  <div class="service">  
-    <div class="service-icon">📲</div>  
-    <h3>Cài đặt</h3>  
-  </div>  
+    a {
+      color: inherit;
+    }
 
-  <div class="service">  
-    <div class="service-icon">🔑</div>  
-    <h3>Cấp key</h3>  
-  </div>  
-</section>  
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-<section id="contact">  
-  <div class="section-heading">  
-    <h2>📞 Kênh liên hệ</h2>  
-    <p>  
-      Chọn một kênh bên dưới để kết nối với bộ phận hỗ trợ.  
-    </p>  
-  </div>  
+    /* HEADER */
 
-  <div class="contact-grid">  
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 12, 24, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
 
-    <!-- FACEBOOK -->  
-    <a  
-      class="contact-card facebook"  
-      href="https://www.facebook.com/share/14wNcdmRKuF/"  
-      target="_blank"  
-      rel="noopener noreferrer"  
-    >  
-      <div class="contact-icon">📘</div>  
-      <div class="contact-info">  
-        <h3>Facebook</h3>  
-        <p>Nhắn tin để được tư vấn và hỗ trợ.</p>  
-        <span class="contact-action">Mở Facebook ↗</span>  
-      </div>  
-    </a>  
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-    <!-- ZALO -->  
-    <a  
-      class="contact-card zalo"  
-      href="https://zalo.me/0776912430"  
-      target="_blank"  
-      rel="noopener noreferrer"  
-    >  
-      <div class="contact-icon">💬</div>  
-      <div class="contact-info">  
-        <h3>Zalo</h3>  
-        <p>Trao đổi về bot, cài đặt và sửa lỗi.</p>  
-        <span class="contact-action">Mở Zalo ↗</span>  
-      </div>  
-    </a>  
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
 
-    <!-- EMAIL -->  
-    <a  
-      class="contact-card email"  
-      href="mailto:tranvantoan4200@gmail.com"  
-    >  
-      <div class="contact-icon">✉️</div>  
-      <div class="contact-info">  
-        <h3>Email</h3>  
-        <p>tranvantoan4200@gmail.com</p>  
-        <span class="contact-action">Gửi email ↗</span>  
-      </div>  
-    </a>  
+    .logo-img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
 
-  </div>  
-</section>  
+    .logo-text {
+      font-size: 19px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
 
-<section class="notice">  
-  <h3>📌 Lưu ý khi yêu cầu hỗ trợ</h3>  
-  <p>  
-    Vui lòng cung cấp nền tảng đang sử dụng,  
-    phiên bản bot và mô tả lỗi gặp phải để được hỗ trợ nhanh hơn.  
-    Không gửi mật khẩu tài khoản game hoặc thông tin đăng nhập nhạy cảm.  
-  </p>  
-</section>  
+    .logo-text span {
+      color: var(--gold);
+    }
 
-<div style="text-align:center">  
-  <a class="back-home" href="index.html">  
-    ← Quay lại trang chủ  
-  </a>  
-</div>
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
 
-  </main>    <footer>  
-    <strong>⚔ TOOL TRU THẦN</strong><br>  
-    Hỗ trợ bot · Fix lỗi · Cài đặt · Cấp key<br>  
-    © <span id="year"></span> Tool Tru Thần. All rights reserved.  
-  </footer>    <script>  
-    document.getElementById("year").textContent =  
-      new Date().getFullYear();  
-  </script>  </body>  
-</html>  
+    .nav-menu a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--gold);
+      background: rgba(245, 199, 106, 0.09);
+    }
+
+    /* HERO */
+
+    .hero {
+      text-align: center;
+      padding: 80px 0 45px;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 15px;
+      border: 1px solid rgba(245, 199, 106, 0.25);
+      background: rgba(245, 199, 106, 0.07);
+      color: var(--gold);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 6vw, 60px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin-bottom: 22px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        90deg,
+        #f5c76a,
+        #fff0bc,
+        #85b9ff
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    /* SERVICES */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 75px;
+    }
+
+    .service {
+      text-align: center;
+      padding: 25px 14px;
+      background: linear-gradient(
+        145deg,
+        rgba(24, 34, 58, 0.95),
+        rgba(17, 24, 43, 0.95)
+      );
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .service:hover {
+      transform: translateY(-5px);
+      border-color: rgba(245, 199, 106, 0.4);
+    }
+
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .service h3 {
+      font-size: 15px;
+    }
+
+    /* CONTACT */
+
+    #contact {
+      scroll-margin-top: 100px;
+      margin-bottom: 60px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(25px, 4vw, 34px);
+      margin-bottom: 10px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 25px 20px;
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: transform 0.25s, border-color 0.25s,
+                  background 0.25s;
+      min-width: 0;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      background: var(--panel-light);
+    }
+
+    .facebook:hover {
+      border-color: #3985ff;
+    }
+
+    .zalo:hover {
+      border-color: #38a7ff;
+    }
+
+    .email:hover {
+      border-color: #f5c76a;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 25px;
+    }
+
+    .contact-info {
+      min-width: 0;
+    }
+
+    .contact-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+      margin-bottom: 15px;
+    }
+
+    .contact-action {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    /* NOTICE */
+
+    .notice {
+      padding: 25px;
+      margin-bottom: 35px;
+      border: 1px solid rgba(245, 199, 106, 0.2);
+      border-radius: 18px;
+      background: rgba(245, 199, 106, 0.045);
+    }
+
+    .notice h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+      color: var(--gold);
+    }
+
+    .notice p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* BACK HOME */
+
+    .back-home-wrap {
+      text-align: center;
+      margin: 35px 0 75px;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f5c76a, #e8a83e);
+      color: #17130a;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .back-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(245, 199, 106, 0.2);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px 16px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: rgba(5, 8, 17, 0.65);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    footer strong {
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 760px) {
+      .navbar {
+        min-height: 70px;
+        gap: 10px;
+      }
+
+      .logo {
+        gap: 7px;
+      }
+
+      .logo-img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .logo-text {
+        font-size: 15px;
+      }
+
+      .nav-menu {
+        gap: 2px;
+      }
+
+      .nav-menu a {
+        padding: 9px 8px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .services {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 55px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .contact-card {
+        padding: 21px 18px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .logo-text {
+        font-size: 13px;
+      }
+
+      .logo-img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .nav-menu a {
+        padding: 8px 6px;
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar" aria-label="Điều hướng chính">
+
+        <a
+          class="logo"
+          href="index.html"
+          aria-label="TOOL TRU THẦN - Trang chủ"
+        >
+          <img
+            class="logo-img"
+            src="logo.png"
+            alt="Logo TOOL TRU THẦN"
+            onerror="this.style.display='none'"
+          >
+          <span class="logo-text">
+            TOOL <span>TRU THẦN</span>
+          </span>
+        </a>
+
+        <div class="nav-menu">
+          <a href="index.html">Trang chủ</a>
+          <a href="phienbantool.html">Phiên bản</a>
+          <a class="active" href="lienhe.html">Liên hệ</a>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero" id="trangchu">
+
+      <div class="hero-label">
+        <span>✦</span>
+        TRUNG TÂM HỖ TRỢ
+      </div>
+
+      <h1>
+        Chúng tôi luôn sẵn sàng<br>
+        <span class="gradient-text">hỗ trợ bạn</span>
+      </h1>
+
+      <p class="hero-description">
+        Gặp vấn đề khi sử dụng bot Tru Thần?
+        Liên hệ với chúng tôi để được hỗ trợ bot,
+        fix lỗi, cài đặt công cụ và cấp key bản quyền.
+      </p>
+
+    </section>
+
+    <!-- SERVICES -->
+    <section
+      class="services"
+      aria-label="Dịch vụ hỗ trợ"
+    >
+
+      <div class="service">
+        <div class="service-icon">🤖</div>
+        <h3>Hỗ trợ bot</h3>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">🛠️</div>
+        <h3>Fix lỗi</h3>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">📲</div>
+        <h3>Cài đặt</h3>
+      </div>
+
+      <div class="service">
+        <div class="service-icon">🔑</div>
+        <h3>Cấp key</h3>
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+      <div class="section-heading">
+        <h2>📞 Kênh liên hệ</h2>
+        <p>
+          Chọn một kênh bên dưới để kết nối
+          với bộ phận hỗ trợ.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- FACEBOOK -->
+        <a
+          class="contact-card facebook"
+          href="https://www.facebook.com/share/14wNcdmRKuF/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Liên hệ qua Facebook"
+        >
+          <div class="contact-icon">📘</div>
+
+          <div class="contact-info">
+            <h3>Facebook</h3>
+
+            <p>
+              Nhắn tin để được tư vấn và hỗ trợ.
+            </p>
+
+            <span class="contact-action">
+              Mở Facebook ↗
+            </span>
+          </div>
+        </a>
+
+        <!-- ZALO -->
+        <a
+          class="contact-card zalo"
+          href="https://zalo.me/0776912430"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Liên hệ qua Zalo"
+        >
+          <div class="contact-icon">💬</div>
+
+          <div class="contact-info">
+            <h3>Zalo</h3>
+
+            <p>
+              Trao đổi về bot, cài đặt và sửa lỗi.
+            </p>
+
+            <span class="contact-action">
+              Mở Zalo ↗
+            </span>
+          </div>
+        </a>
+
+        <!-- EMAIL -->
+        <a
+          class="contact-card email"
+          href="mailto:tranvantoan4200@gmail.com"
+          aria-label="Liên hệ qua Email"
+        >
+          <div class="contact-icon">✉️</div>
+
+          <div class="contact-info">
+            <h3>Email</h3>
+
+            <p>
+              tranvantoan4200@gmail.com
+            </p>
+
+            <span class="contact-action">
+              Gửi email ↗
+            </span>
+          </div>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- NOTICE -->
+    <section class="notice">
+
+      <h3>📌 Lưu ý khi yêu cầu hỗ trợ</h3>
+
+      <p>
+        Vui lòng cung cấp nền tảng đang sử dụng,
+        phiên bản bot và mô tả lỗi gặp phải để được
+        hỗ trợ nhanh hơn. Không gửi mật khẩu tài khoản
+        game hoặc thông tin đăng nhập nhạy cảm.
+      </p>
+
+    </section>
+
+    <!-- BACK HOME -->
+    <div class="back-home-wrap">
+      <a class="back-home" href="index.html">
+        ← Quay lại trang chủ
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>⚔ TOOL TRU THẦN</strong>
+    <br>
+
+    Hỗ trợ bot · Fix lỗi · Cài đặt · Cấp key
+    <br>
+
+    © <span id="year"></span>
+    Tool Tru Thần. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
