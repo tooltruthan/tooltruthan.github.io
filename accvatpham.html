@@ -1,0 +1,592 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b16">
+  <meta name="description" content="Acc và vật phẩm Tru Thần - Liên hệ TOOL TRU THẦN để hỏi thông tin và đặt hàng.">
+  <title>Acc &amp; Vật Phẩm | TOOL TRU THẦN</title>
+
+  <script src="menu.js" defer></script>
+  <script src="footer.js" defer></script>
+
+  <style>
+    :root {
+      --bg: #080b16;
+      --bg2: #101528;
+      --card: #141a2d;
+      --gold: #e5bd70;
+      --gold2: #ffe2a0;
+      --text: #f5f3ff;
+      --muted: #aaaec3;
+      --border: rgba(229,189,112,.22);
+      --purple: #a58bff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at top, #20183c 0, transparent 42%),
+        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin: auto;
+    }
+
+    /* Đồng bộ kích thước logo menu dùng chung */
+    #site-menu .header .navbar .logo {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      flex-shrink: 0 !important;
+      white-space: nowrap;
+    }
+
+    #site-menu .header .navbar .logo img {
+      display: block !important;
+      width: 30px !important;
+      height: 30px !important;
+      min-width: 30px !important;
+      min-height: 30px !important;
+      max-width: 30px !important;
+      max-height: 30px !important;
+      object-fit: contain !important;
+      flex: 0 0 30px !important;
+    }
+
+    .hero {
+      padding: 76px 0 48px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 15px;
+      margin-bottom: 18px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: rgba(229,189,112,.07);
+      color: var(--gold2);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    h1 {
+      margin: 0 auto 18px;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.2;
+    }
+
+    .gradient-text {
+      color: var(--gold2);
+      background: linear-gradient(90deg, #e5bd70, #fff0c5, #a58bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 46px;
+      padding: 12px 22px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      color: #17101f;
+      background: linear-gradient(135deg, var(--gold2), var(--gold));
+      border-color: transparent;
+    }
+
+    .btn-secondary {
+      color: var(--gold2);
+      background: rgba(255,255,255,.035);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .section {
+      padding: 32px 0 56px;
+    }
+
+    .section-heading {
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 4vw, 34px);
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .category-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: linear-gradient(145deg, rgba(20,26,45,.96), rgba(12,16,31,.96));
+      transition: transform .2s, border-color .2s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,226,160,.65);
+    }
+
+    .category-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 18px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(229,189,112,.08);
+      font-size: 27px;
+    }
+
+    .category-card h3 {
+      margin: 0 0 10px;
+      color: var(--gold2);
+      font-size: 19px;
+    }
+
+    .category-card p {
+      flex: 1;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .category-card ul {
+      padding-left: 19px;
+      margin: 0 0 22px;
+      color: #d9d9e8;
+      font-size: 13px;
+    }
+
+    .category-card li {
+      margin: 6px 0;
+    }
+
+    .card-link {
+      display: block;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--gold2);
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .card-link:hover {
+      background: rgba(229,189,112,.1);
+    }
+
+    .notice {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      padding: 22px;
+      border: 1px solid rgba(165,139,255,.25);
+      border-radius: 15px;
+      background: rgba(165,139,255,.06);
+    }
+
+    .notice-icon {
+      font-size: 25px;
+    }
+
+    .notice h3 {
+      margin: 0 0 6px;
+      color: var(--gold2);
+      font-size: 16px;
+    }
+
+    .notice p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .order-section {
+      padding: 0 0 70px;
+    }
+
+    .order-box {
+      padding: 34px 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(120deg, rgba(229,189,112,.08), rgba(165,139,255,.07));
+      text-align: center;
+    }
+
+    .order-box h2 {
+      margin: 0 0 10px;
+      font-size: 27px;
+    }
+
+    .order-box p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin: 28px 0;
+      text-align: left;
+    }
+
+    .step {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(8,11,22,.45);
+    }
+
+    .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #17101f;
+      font-weight: bold;
+    }
+
+    .step h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .step p {
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-card {
+        padding: 21px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      #site-menu .header .navbar .logo img {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        max-width: 28px !important;
+        max-height: 28px !important;
+        flex-basis: 28px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- MENU DÙNG CHUNG -->
+  <div id="site-menu"></div>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">TOOL TRU THẦN · ACC &amp; VẬT PHẨM</div>
+
+        <h1>
+          Kho <span class="gradient-text">Acc &amp; Vật Phẩm</span>
+        </h1>
+
+        <p>
+          Khu vực tiếp nhận yêu cầu về tài khoản, vật phẩm và tài nguyên
+          trong game Tru Thần. Liên hệ để kiểm tra thông tin, tình trạng
+          hàng và thỏa thuận trước khi giao dịch.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary"
+             href="https://zalo.me/0776912430"
+             target="_blank"
+             rel="noopener noreferrer">
+            💬 Liên hệ đặt hàng
+          </a>
+
+          <a class="btn btn-secondary" href="lienhe.html">
+            Trung tâm hỗ trợ
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Danh mục dịch vụ</h2>
+          <p>Chọn danh mục phù hợp rồi gửi yêu cầu để được tư vấn.</p>
+        </div>
+
+        <div class="category-grid">
+          <article class="category-card">
+            <div class="category-icon">👤</div>
+            <h3>Tài khoản game</h3>
+            <p>
+              Tiếp nhận nhu cầu tìm tài khoản Tru Thần theo yêu cầu
+              và điều kiện của người chơi.
+            </p>
+            <ul>
+              <li>Trao đổi thông tin nhân vật</li>
+              <li>Kiểm tra tình trạng tài khoản</li>
+              <li>Thỏa thuận trước khi giao dịch</li>
+            </ul>
+            <a class="card-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">Hỏi về tài khoản →</a>
+          </article>
+
+          <article class="category-card">
+            <div class="category-icon">⚔️</div>
+            <h3>Trang bị &amp; vật phẩm</h3>
+            <p>
+              Gửi danh sách trang bị hoặc vật phẩm bạn đang cần
+              để được kiểm tra khả năng cung cấp.
+            </p>
+            <ul>
+              <li>Trang bị nhân vật</li>
+              <li>Vật phẩm sử dụng trong game</li>
+              <li>Yêu cầu theo tên và số lượng</li>
+            </ul>
+            <a class="card-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">Hỏi về vật phẩm →</a>
+          </article>
+
+          <article class="category-card">
+            <div class="category-icon">💎</div>
+            <h3>Nguyên liệu &amp; tài nguyên</h3>
+            <p>
+              Tiếp nhận yêu cầu nguyên liệu, tài nguyên và các
+              vật phẩm phục vụ quá trình chơi game.
+            </p>
+            <ul>
+              <li>Nêu rõ loại tài nguyên</li>
+              <li>Ghi số lượng mong muốn</li>
+              <li>Xác nhận điều kiện giao nhận</li>
+            </ul>
+            <a class="card-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">Hỏi về tài nguyên →</a>
+          </article>
+
+          <article class="category-card">
+            <div class="category-icon">📦</div>
+            <h3>Đơn hàng số lượng lớn</h3>
+            <p>
+              Dành cho người chơi có nhu cầu trao đổi nhiều tài khoản
+              hoặc vật phẩm theo thỏa thuận.
+            </p>
+            <ul>
+              <li>Gửi danh sách cần mua</li>
+              <li>Trao đổi số lượng cụ thể</li>
+              <li>Xác nhận trước khi thực hiện</li>
+            </ul>
+            <a class="card-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">Gửi yêu cầu →</a>
+          </article>
+
+          <article class="category-card">
+            <div class="category-icon">🛡️</div>
+            <h3>Hỗ trợ giao dịch</h3>
+            <p>
+              Trao đổi trước về thông tin, phương thức giao nhận
+              và các điều kiện liên quan.
+            </p>
+            <ul>
+              <li>Xác nhận nội dung giao dịch</li>
+              <li>Kiểm tra thông tin trước khi chốt</li>
+              <li>Lưu lại thỏa thuận liên quan</li>
+            </ul>
+            <a class="card-link" href="lienhe.html">Liên hệ hỗ trợ →</a>
+          </article>
+
+          <article class="category-card">
+            <div class="category-icon">✉️</div>
+            <h3>Yêu cầu riêng</h3>
+            <p>
+              Không tìm thấy danh mục phù hợp? Hãy gửi yêu cầu
+              cụ thể để được phản hồi.
+            </p>
+            <ul>
+              <li>Mô tả nhu cầu của bạn</li>
+              <li>Nêu số lượng cần thiết</li>
+              <li>Trao đổi điều kiện thực hiện</li>
+            </ul>
+            <a class="card-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">Gửi yêu cầu riêng →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="notice">
+          <div class="notice-icon">🔔</div>
+          <div>
+            <h3>Lưu ý trước khi giao dịch</h3>
+            <p>
+              Các danh mục trên là nơi tiếp nhận yêu cầu, không có nghĩa
+              mọi tài khoản hoặc vật phẩm đều đang sẵn hàng. Vui lòng
+              xác nhận thông tin, giá và điều kiện giao dịch trực tiếp
+              trước khi thanh toán. Không cung cấp mật khẩu email,
+              mật khẩu ngân hàng hoặc mã OTP cho người khác.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="order-section">
+      <div class="container">
+        <div class="order-box">
+          <h2>Quy trình đặt hàng</h2>
+          <p>
+            Gửi yêu cầu rõ ràng để việc kiểm tra và trao đổi thuận tiện hơn.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <span class="step-number">1</span>
+              <h3>Gửi yêu cầu</h3>
+              <p>
+                Nêu loại tài khoản hoặc vật phẩm, số lượng và
+                thông tin cần kiểm tra.
+              </p>
+            </div>
+
+            <div class="step">
+              <span class="step-number">2</span>
+              <h3>Xác nhận thông tin</h3>
+              <p>
+                Trao đổi tình trạng hàng, giá và điều kiện giao nhận
+                trước khi quyết định.
+              </p>
+            </div>
+
+            <div class="step">
+              <span class="step-number">3</span>
+              <h3>Thống nhất giao dịch</h3>
+              <p>
+                Chỉ tiến hành khi hai bên đã thống nhất đầy đủ
+                các điều khoản liên quan.
+              </p>
+            </div>
+          </div>
+
+          <a class="btn btn-primary"
+             href="https://zalo.me/0776912430"
+             target="_blank"
+             rel="noopener noreferrer">
+            💬 Liên hệ TOOL TRU THẦN
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER DÙNG CHUNG -->
+  <div id="site-footer"></div>
+</body>
+</html>
+```
