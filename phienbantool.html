@@ -1,0 +1,318 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10111b">
+<title>Phiên bản Tool | TOOL TRU THẦN</title>
+<meta name="description" content="Danh sách các phiên bản Tool Tru Thần: Auto phó bản, nhiệm vụ, train, săn boss và tool tích hợp.">
+
+<style>
+:root {
+  --bg: #10111b;
+  --panel: #191b2a;
+  --gold: #f2c66d;
+  --text: #f5f3ef;
+  --muted: #a5a8bb;
+  --line: rgba(242,198,109,.2);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at top, #29203d 0%, transparent 48%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+header {
+  border-bottom: 1px solid var(--line);
+  background: rgba(16,17,27,.94);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+}
+.nav {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.logo {
+  color: var(--gold);
+  font-weight: 900;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.menu a { font-size: 14px; color: #dddbea; }
+.menu a:hover, .menu a.active { color: var(--gold); }
+
+.hero {
+  max-width: 1000px;
+  margin: auto;
+  padding: 65px 20px 35px;
+  text-align: center;
+}
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+h1 {
+  margin: 16px 0 12px;
+  font-size: clamp(30px, 6vw, 48px);
+}
+h1 span { color: var(--gold); }
+.hero p {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 650px;
+  margin: auto;
+  font-size: 15px;
+}
+.container {
+  max-width: 1100px;
+  padding: 15px 20px 65px;
+  margin: auto;
+}
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 22px;
+}
+.section-title h2 { font-size: 21px; margin: 0; }
+.count { color: var(--muted); font-size: 13px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 23px;
+  min-height: 255px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: linear-gradient(145deg, #202235, #151622);
+  transition: .2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(242,198,109,.65);
+  box-shadow: 0 12px 35px #0003;
+}
+.card.featured {
+  border-color: rgba(242,198,109,.55);
+  background: linear-gradient(145deg, #30253b, #191927);
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.number {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.status {
+  font-size: 11px;
+  padding: 6px 9px;
+  border-radius: 20px;
+  background: #ffffff0b;
+  border: 1px solid #ffffff16;
+  color: #c7c8d4;
+  white-space: nowrap;
+}
+.status.ready {
+  color: #91e7b2;
+  border-color: #91e7b244;
+  background: #91e7b20c;
+}
+.symbol {
+  font-size: 30px;
+  margin-top: 22px;
+}
+.card h3 { margin: 12px 0 9px; font-size: 19px; }
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 13px;
+  margin: 0 0 22px;
+  flex: 1;
+}
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: bold;
+  background: #f2c66d08;
+  cursor: pointer;
+}
+.btn:hover { background: #f2c66d16; }
+.btn.primary {
+  color: #20180c;
+  background: linear-gradient(100deg, #f6d88d, #e8b454);
+  border: none;
+}
+.notice {
+  margin-top: 28px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  background: #ffffff04;
+}
+.notice strong { color: var(--gold); }
+footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media(max-width: 760px) {
+  .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .menu { gap: 12px; }
+  .menu a { font-size: 12px; }
+  .hero { padding-top: 48px; }
+}
+@media(max-width: 480px) {
+  .nav { flex-direction: column; }
+  .menu { width: 100%; justify-content: space-between; }
+  .grid { grid-template-columns: 1fr; }
+  .card { min-height: 230px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <nav class="nav">
+    <a class="logo" href="index.html">⚔ TOOL TRU THẦN</a>
+    <div class="menu">
+      <a href="index.html">Trang chủ</a>
+      <a href="phienbantool.html" class="active">Phiên bản Tool</a>
+      <a href="lienhe.html">Liên hệ</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">TRU THẦN • TOOL COLLECTION</div>
+  <h1>PHIÊN BẢN <span>TOOL</span></h1>
+  <p>
+    Khám phá các phiên bản hỗ trợ game Tru Thần.
+    Chọn phiên bản phù hợp với nhu cầu của bạn.
+    Các tính năng mới sẽ được cập nhật tại đây.
+  </p>
+</section>
+
+<main class="container">
+  <div class="section-title">
+    <h2>Danh sách phiên bản</h2>
+    <span class="count">05 phiên bản</span>
+  </div>
+
+  <div class="grid">
+
+    <article class="card featured">
+      <div class="card-top">
+        <span class="number">VERSION 01</span>
+        <span class="status ready">● Ưu tiên</span>
+      </div>
+      <div class="symbol">⚔️</div>
+      <h3>Bản 1 — Auto phó bản</h3>
+      <p>Hỗ trợ tự động chạy phó bản. Thông tin tải và hướng dẫn sử dụng sẽ được cập nhật.</p>
+      <a class="btn primary" href="lienhe.html">Thông tin phiên bản</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <span class="number">VERSION 02</span>
+        <span class="status">Đang cập nhật</span>
+      </div>
+      <div class="symbol">📜</div>
+      <h3>Bản 2 — Auto nhiệm vụ</h3>
+      <p>Phiên bản hỗ trợ tự động thực hiện nhiệm vụ. Theo dõi trang để nhận thông báo mới.</p>
+      <a class="btn" href="lienhe.html">Theo dõi cập nhật</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <span class="number">VERSION 03</span>
+        <span class="status">Đang cập nhật</span>
+      </div>
+      <div class="symbol">🐇</div>
+      <h3>Bản 3 — Auto train & ăn thỏ</h3>
+      <p>Danh mục hỗ trợ treo train và tính năng ăn thỏ trong game.</p>
+      <a class="btn" href="lienhe.html">Theo dõi cập nhật</a>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <span class="number">VERSION 05</span>
+        <span class="status">Đang cập nhật</span>
+      </div>
+      <div class="symbol">🐉</div>
+      <h3>Bản 5 — Auto săn boss</h3>
+      <p>Hướng đến việc hỗ trợ tìm kiếm và săn boss. Chi tiết sẽ được bổ sung sau.</p>
+      <a class="btn" href="lienhe.html">Theo dõi cập nhật</a>
+    </article>
+
+    <article class="card featured">
+      <div class="card-top">
+        <span class="number">VERSION 06</span>
+        <span class="status">Đang phát triển</span>
+      </div>
+      <div class="symbol">✨</div>
+      <h3>Bản 6 — Tool tích hợp</h3>
+      <p>Phiên bản tổng hợp nhiều tính năng trong một giao diện, hướng đến trải nghiệm thuận tiện.</p>
+      <a class="btn primary" href="lienhe.html">Thông tin phiên bản</a>
+    </article>
+
+  </div>
+
+  <div class="notice">
+    <strong>✦ Thông báo cập nhật</strong><br>
+    Các phiên bản chưa có liên kết tải chính thức sẽ hiển thị trạng thái
+    đang cập nhật. Vui lòng theo dõi website để biết thông tin mới nhất.
+    Chỉ tải file từ nguồn chính thức.
+  </div>
+</main>
+
+<footer>
+  <div>⚔ TOOL TRU THẦN</div>
+  <p>© 2026 Tool Tru Thần • Đồng hành cùng hành trình tu luyện</p>
+</footer>
+</body>
+</html>
