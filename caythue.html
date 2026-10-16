@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -297,4 +296,239 @@
 
     @media (max-width: 550px) {
       .hero {
-        padding: 60
+        padding: 60px 0 45px;
+      }
+
+      .hero h1 {
+        letter-spacing: -.5px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 40px 0 55px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- MENU DÙNG CHUNG -->
+  <div id="site-menu"></div>
+
+  <main>
+
+    <!-- GIỚI THIỆU -->
+    <section class="hero">
+      <div class="container hero-content">
+
+        <span class="tag">DỊCH VỤ CÀY THUÊ</span>
+
+        <h1>
+          CÀY THUÊ
+          <span class="gradient-text">TRU THẦN</span>
+        </h1>
+
+        <p>
+          Hỗ trợ cày cấp, săn boss, vượt phó bản và thu thập
+          nguyên liệu theo yêu cầu. Liên hệ để trao đổi phạm vi
+          công việc, thời gian và chi phí trước khi đặt dịch vụ.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="https://zalo.me/0776912430"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            💬 Liên hệ đặt dịch vụ
+          </a>
+
+          <a href="lienhe.html" class="btn btn-secondary">
+            Xem kênh hỗ trợ
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DANH SÁCH DỊCH VỤ -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="tag">DỊCH VỤ HIỆN CÓ</span>
+          <h2>Các hạng mục cày thuê</h2>
+          <p>
+            Chọn hạng mục bạn cần và liên hệ để xác nhận
+            khả năng thực hiện, thời gian và giá dịch vụ.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <article class="service-card">
+            <div class="service-icon">⚡</div>
+            <h3>Cày cấp nhân vật</h3>
+            <p>
+              Hỗ trợ nâng cấp nhân vật theo mục tiêu đã thống nhất,
+              tùy tình trạng tài khoản và nội dung game.
+            </p>
+            <a class="service-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">
+              Hỏi dịch vụ →
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">👹</div>
+            <h3>Săn boss</h3>
+            <p>
+              Trao đổi yêu cầu săn boss, thời gian thực hiện
+              và vật phẩm mục tiêu trước khi đặt dịch vụ.
+            </p>
+            <a class="service-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">
+              Hỏi dịch vụ →
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🏯</div>
+            <h3>Cày phó bản</h3>
+            <p>
+              Hỗ trợ thực hiện phó bản phù hợp với cấp độ,
+              trang bị và điều kiện của nhân vật.
+            </p>
+            <a class="service-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">
+              Hỏi dịch vụ →
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">💎</div>
+            <h3>Thu thập nguyên liệu</h3>
+            <p>
+              Thống nhất loại nguyên liệu, số lượng mục tiêu
+              và thời gian dự kiến trước khi thực hiện.
+            </p>
+            <a class="service-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">
+              Hỏi dịch vụ →
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🛡️</div>
+            <h3>Hỗ trợ nhiệm vụ</h3>
+            <p>
+              Trao đổi về nhiệm vụ cần hoàn thành và điều kiện
+              nhân vật để xác nhận có thể hỗ trợ hay không.
+            </p>
+            <a class="service-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">
+              Hỏi dịch vụ →
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🎮</div>
+            <h3>Yêu cầu riêng</h3>
+            <p>
+              Có mục tiêu khác? Gửi thông tin cụ thể để trao đổi
+              phương án thực hiện và báo giá.
+            </p>
+            <a class="service-link"
+               href="https://zalo.me/0776912430"
+               target="_blank"
+               rel="noopener noreferrer">
+              Liên hệ tư vấn →
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- QUY TRÌNH -->
+    <section class="section" style="background:rgba(255,255,255,.018);border-top:1px solid rgba(255,255,255,.04)">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="tag">QUY TRÌNH</span>
+          <h2>Đặt dịch vụ như thế nào?</h2>
+          <p>Trao đổi rõ ràng trước khi bắt đầu.</p>
+        </div>
+
+        <div class="process">
+
+          <article class="process-card">
+            <div class="process-number">1</div>
+            <h3>Gửi yêu cầu</h3>
+            <p>
+              Cung cấp hạng mục cần làm, tình trạng nhân vật
+              và mục tiêu mong muốn.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <div class="process-number">2</div>
+            <h3>Xác nhận chi phí</h3>
+            <p>
+              Thống nhất giá, thời gian dự kiến và điều kiện
+              thực hiện trước khi xác nhận đơn.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <div class="process-number">3</div>
+            <h3>Thực hiện và kiểm tra</h3>
+            <p>
+              Theo dõi tiến độ và kiểm tra kết quả theo
+              phạm vi dịch vụ đã thống nhất.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="notice">
+          <h3>📌 Lưu ý bảo mật tài khoản</h3>
+          <p>
+            Không gửi mật khẩu email, mật khẩu tài khoản cá nhân
+            hoặc mã xác thực một lần. Hãy xác nhận rõ phạm vi dịch vụ,
+            chi phí và điều kiện bảo mật trước khi giao tài khoản
+            cho bất kỳ bên nào.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CHÂN TRANG DÙNG CHUNG -->
+  <div id="site-footer"></div>
+
+</body>
+</html>
