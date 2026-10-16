@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#10111b">
-  <meta name="description" content="Tool Tru Thần - Công cụ hỗ trợ game Tru Thần trên điện thoại và máy tính">
+  <meta name="description" content="TOOL TRU THẦN - Tool hỗ trợ, cày thuê, tài khoản clone và vật phẩm game Tru Thần.">
   <title>TOOL TRU THẦN - Đồng hành tu luyện</title>
 
   <style>
@@ -22,50 +22,58 @@
       font-family: Arial, sans-serif;
       color: #f5f3ff;
       background: #10111b;
+      line-height: 1.6;
     }
 
     a {
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* THANH HEADER */
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
       width: 100%;
       min-height: 68px;
-      padding: 12px 5%;
+      padding: 10px 4%;
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
       border-bottom: 1px solid #303147;
       background: rgba(21, 22, 38, 0.97);
       backdrop-filter: blur(12px);
     }
 
-    /* LOGO BÊN TRÁI */
     .logo {
       display: flex;
       align-items: center;
       flex-shrink: 0;
+      gap: 9px;
+      color: #e2c7ff;
       text-decoration: none;
+      font-size: 17px;
+      font-weight: 800;
     }
 
     .logo-img {
-      display: block;
       width: 42px;
       height: 42px;
       object-fit: contain;
     }
 
-    /* BA MENU CHIA ĐỀU TOÀN BỘ PHẦN CÒN LẠI */
+    .logo-text {
+      white-space: nowrap;
+    }
+
+    /* MENU CHIA ĐỀU */
     nav {
       display: flex;
       align-items: center;
       flex: 1;
       min-width: 0;
       justify-content: space-evenly;
+      gap: 4px;
     }
 
     nav a {
@@ -74,20 +82,21 @@
       text-align: center;
       color: #ddd9ef;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
-      white-space: nowrap;
-      padding: 12px 2px;
-      transition: color 0.2s;
+      padding: 12px 4px;
+      border-radius: 8px;
+      transition: 0.2s;
     }
 
     nav a:hover {
-      color: #c5a7ff;
+      color: #d5b6ff;
+      background: #29243e;
     }
 
-    /* PHẦN GIỚI THIỆU */
+    /* HERO */
     .hero {
-      padding: 76px 20px 65px;
+      padding: 85px 20px 75px;
       text-align: center;
       background: radial-gradient(
         ellipse at top,
@@ -99,197 +108,316 @@
 
     .tag {
       display: inline-block;
-      padding: 8px 13px;
+      padding: 7px 14px;
       border: 1px solid #7960a9;
       border-radius: 30px;
       color: #ddc8ff;
+      background: rgba(116, 77, 170, 0.12);
       font-size: 12px;
-      letter-spacing: 0.5px;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
 
-    h1 {
-      font-size: clamp(32px, 7vw, 58px);
+    .hero h1 {
+      margin: 22px 0 15px;
+      font-size: clamp(30px, 5vw, 54px);
       line-height: 1.2;
-      margin: 23px 0 16px;
-      color: #f2eaff;
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      color: #c4a0ff;
     }
 
     .hero p {
-      max-width: 620px;
+      max-width: 700px;
       margin: 0 auto;
-      line-height: 1.8;
-      color: #c4c0d5;
+      color: #c1bdd8;
       font-size: 15px;
     }
 
-    .actions {
-      margin-top: 28px;
+    .hero-actions {
       display: flex;
-      gap: 12px;
-      justify-content: center;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 45px;
-      padding: 13px 20px;
+      display: inline-block;
+      padding: 13px 22px;
       border-radius: 10px;
       text-decoration: none;
       font-size: 14px;
       font-weight: bold;
-      border: 1px solid #7960a9;
-      color: white;
-      background: #7650bd;
       transition: 0.2s;
     }
 
+    .btn-primary {
+      background: linear-gradient(90deg, #7546c8, #a16aef);
+      color: white;
+    }
+
+    .btn-secondary {
+      border: 1px solid #675783;
+      color: #e2d5fa;
+      background: #211e32;
+    }
+
     .btn:hover {
-      background: #8962d1;
       transform: translateY(-2px);
+      opacity: 0.9;
     }
 
-    .btn.secondary {
-      background: transparent;
-    }
-
-    .btn.secondary:hover {
-      background: #25213a;
-    }
-
-    /* NỘI DUNG CHÍNH */
-    main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 38px 18px 55px;
-    }
-
-    section {
+    /* SECTION CHUNG */
+    .section {
+      padding: 65px 5%;
       scroll-margin-top: 85px;
+    }
+
+    .section-alt {
+      background: #151626;
+      border-top: 1px solid #292a40;
+      border-bottom: 1px solid #292a40;
     }
 
     .section-heading {
       text-align: center;
-      margin-bottom: 28px;
+      max-width: 760px;
+      margin: 0 auto 38px;
     }
 
-    h2 {
-      font-size: 25px;
-      margin: 0 0 10px;
-      color: #e7d8ff;
+    .section-heading h2 {
+      margin: 17px 0 10px;
+      font-size: clamp(25px, 4vw, 35px);
+      color: #f0e7ff;
+      line-height: 1.3;
     }
 
-    .section-description {
-      color: #aaa7bf;
+    .section-heading p {
+      color: #aaa8c3;
       font-size: 14px;
-      line-height: 1.7;
-      margin: 0 auto;
-      max-width: 600px;
-    }
-
-    /* DANH SÁCH CÔNG CỤ */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .tool-card {
-      padding: 24px;
-      background: #181929;
-      border: 1px solid #303147;
-      border-radius: 16px;
-      transition: border-color 0.2s, transform 0.2s;
-      min-width: 0;
-    }
-
-    .tool-card:hover {
-      border-color: #7960a9;
-      transform: translateY(-3px);
-    }
-
-    .tool-icon {
-      width: 45px;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      background: #29213e;
-      font-size: 23px;
-      margin-bottom: 16px;
-    }
-
-    .tool-card h3 {
-      font-size: 18px;
-      margin: 0 0 10px;
-      color: #eee5ff;
-    }
-
-    .tool-card p {
-      color: #b6b2ca;
-      font-size: 14px;
-      line-height: 1.7;
-      margin: 0 0 18px;
-    }
-
-    .tool-link {
-      display: inline-block;
-      color: #c5a7ff;
-      font-size: 14px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .tool-link:hover {
-      color: #e1d0ff;
-    }
-
-    /* GIỚI THIỆU THÊM */
-    .about {
-      margin-top: 42px;
-      padding: 25px;
-      border: 1px solid #303147;
-      background: #181929;
-      border-radius: 16px;
-      text-align: center;
-    }
-
-    .about p {
-      color: #b6b2ca;
-      font-size: 14px;
-      line-height: 1.8;
       margin: 0;
     }
 
-    /* CHÂN TRANG */
-    footer {
-      padding: 25px 18px;
-      border-top: 1px solid #303147;
-      text-align: center;
-      color: #9692ad;
-      font-size: 13px;
-      line-height: 1.8;
-      background: #151626;
+    /* THẺ NỘI DUNG */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    footer p {
-      margin: 5px 0;
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .clone-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .card,
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 25px 22px;
+      background: linear-gradient(145deg, #202139, #171827);
+      border: 1px solid #38314f;
+      border-radius: 16px;
+      transition: transform 0.2s, border-color 0.2s;
+      min-width: 0;
+    }
+
+    .card:hover,
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: #9872e9;
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .card h3,
+    .service-card h3 {
+      margin: 5px 0 10px;
+      color: #e5d4ff;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .card p,
+    .service-card p {
+      color: #b8b5cb;
+      font-size: 14px;
+      line-height: 1.8;
+      margin: 0 0 20px;
+      flex: 1;
+    }
+
+    .card-link,
+    .service-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(90deg, #7546c8, #9a61eb);
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+
+    .card-link:hover,
+    .service-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* DỊCH VỤ */
+    .service-icon {
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+
+    .service-note {
+      text-align: center;
+      color: #9996b0;
+      font-size: 12px;
+      line-height: 1.8;
+      margin: 28px auto 0;
+      max-width: 700px;
+    }
+
+    /* HƯỚNG DẪN */
+    .steps {
+      max-width: 850px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .step {
+      padding: 23px 18px;
+      border: 1px solid #38314f;
+      border-radius: 14px;
+      background: #1b1c2d;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #7045b6;
+      color: white;
+      font-weight: bold;
+    }
+
+    .step h3 {
+      font-size: 16px;
+      color: #e5d4ff;
+      margin: 0 0 8px;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: #aaa8c3;
+      margin: 0;
+    }
+
+    /* LIÊN HỆ */
+    .contact-box {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 35px 25px;
+      text-align: center;
+      background: linear-gradient(145deg, #25213b, #191827);
+      border: 1px solid #51406f;
+      border-radius: 18px;
+    }
+
+    .contact-box h2 {
+      margin: 0 0 12px;
+      color: #eadfff;
+      font-size: 28px;
+    }
+
+    .contact-box p {
+      color: #b8b5cb;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 5%;
+      text-align: center;
+      border-top: 1px solid #303147;
+      background: #0c0d15;
+      color: #8f8ca5;
+      font-size: 12px;
     }
 
     footer a {
-      color: #c5a7ff;
+      color: #c4a0ff;
       text-decoration: none;
     }
 
-    /* ĐIỆN THOẠI */
-    @media (max-width: 480px) {
+    /* TABLET */
+    @media (max-width: 1000px) {
       header {
-        min-height: 58px;
-        padding: 9px 10px;
+        gap: 10px;
+        padding-left: 3%;
+        padding-right: 3%;
+      }
+
+      .logo-text {
+        font-size: 14px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 10px 2px;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ĐIỆN THOẠI */
+    @media (max-width: 650px) {
+      header {
+        flex-direction: column;
         gap: 8px;
+        padding: 10px 8px 8px;
+      }
+
+      .logo {
+        justify-content: center;
       }
 
       .logo-img {
@@ -298,63 +426,42 @@
       }
 
       nav {
-        flex: 1;
         width: 100%;
-      }
-
-      nav a {
-        font-size: 12px;
-        padding: 10px 1px;
-      }
-
-      .hero {
-        padding: 58px 18px 48px;
-      }
-
-      h1 {
-        font-size: clamp(30px, 8vw, 38px);
-      }
-
-      .hero p {
-        font-size: 14px;
-      }
-
-      main {
-        padding: 30px 14px 42px;
-      }
-
-      h2 {
-        font-size: 22px;
-      }
-
-      .tools-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      .tool-card {
-        padding: 20px;
-      }
-
-      .about {
-        padding: 20px;
-      }
-    }
-
-    /* ĐIỆN THOẠI MÀN HÌNH NHỎ */
-    @media (max-width: 350px) {
-      header {
-        padding: 8px;
-        gap: 5px;
-      }
-
-      .logo-img {
-        width: 29px;
-        height: 29px;
+        gap: 2px;
       }
 
       nav a {
         font-size: 11px;
+        padding: 9px 2px;
+        white-space: normal;
+        line-height: 1.35;
+      }
+
+      .hero {
+        padding: 60px 18px 50px;
+      }
+
+      .section {
+        padding: 45px 16px;
+      }
+
+      .service-grid,
+      .card-grid,
+      .clone-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        margin-bottom: 28px;
+      }
+
+      .contact-box {
+        padding: 28px 18px;
+      }
+
+      .contact-box h2 {
+        font-size: 24px;
       }
     }
   </style>
@@ -362,91 +469,282 @@
 
 <body>
 
-  <!-- HEADER: LOGO + 3 MENU -->
+  <!-- THANH MENU -->
   <header>
-    <a class="logo" href="index.html" aria-label="Trang chủ">
+    <a class="logo" href="#trangchu" aria-label="TOOL TRU THẦN - Trang chủ">
       <img
-        src="./logo.png"
-        alt="Logo Tru Thần"
         class="logo-img"
+        src="logo.png"
+        alt="Logo TOOL TRU THẦN"
+        onerror="this.style.display='none'"
       >
+      <span class="logo-text">⚔ TOOL TRU THẦN</span>
     </a>
 
     <nav aria-label="Menu chính">
-      <a href="index.html">Trang chủ</a>
-      <a href="#cong-cu">Công cụ</a>
+      <a href="#trangchu">Trang chủ</a>
+      <a href="#phienban">Phiên bản tool</a>
+      <a href="#dichvu">Cày thuê</a>
+      <a href="#clone">Acc & Vật phẩm</a>
       <a href="lienhe.html">Liên hệ</a>
     </nav>
   </header>
 
-  <!-- KHU VỰC TRANG CHỦ -->
-  <section class="hero" id="trang-chu">
-    <h1>TOOL TRU THẦN</h1>
+  <main>
 
-    <p>
-      Đồng hành cùng game thủ Việt.<br>
-      Giao diện quản lý công cụ hỗ trợ game Tru Thần<br>
-      dành cho điện thoại và máy tính.
-    </p>
+    <!-- TRANG CHỦ -->
+    <section class="hero" id="trangchu">
+      <span class="tag">TOOL TRU THẦN • ĐỒNG HÀNH TU LUYỆN</span>
 
-    <div class="actions">
-      <a href="#cong-cu" class="btn">Khám phá công cụ</a>
-      <a href="lienhe.html" class="btn secondary">
-        Liên hệ hỗ trợ
-      </a>
-    </div>
-  </section>
-
-    <!-- GIỚI THIỆU -->
-    <section class="about">
-      <div class="section-heading">
-        <h2>Đồng hành cùng game thủ Việt</h2>
-      </div>
+      <h1>TOOL TRU THẦN<br>
+        <span>Khởi Đầu Hành Trình Tu Luyện</span>
+      </h1>
 
       <p>
-        TOOL TRU THẦN hướng đến trải nghiệm quản lý công cụ
-        đơn giản, dễ sử dụng và thuận tiện trên nhiều thiết bị.
-        Chúc bạn có những giây phút trải nghiệm game vui vẻ!
+        Công cụ hỗ trợ game Tru Thần trên điện thoại và máy tính.
+        Hỗ trợ tự động hóa thao tác chơi game, dịch vụ cày thuê
+        và tài nguyên game theo yêu cầu.
       </p>
-    </section>
-  
-  <!-- KHU VỰC CÔNG CỤ -->
-  <main>
-    <section id="cong-cu">
-      <div class="section-heading">
-        <h2>Công cụ hỗ trợ</h2>
 
-        <p class="section-description">
-          Quản lý và truy cập các tiện ích dành cho game thủ Tru Thần
-          trên mọi nền tảng.
+      <div class="hero-actions">
+        <a href="#phienban" class="btn btn-primary">Khám phá phiên bản</a>
+        <a href="lienhe.html" class="btn btn-secondary">Liên hệ ngay</a>
+      </div>
+    </section>
+
+    <!-- PHIÊN BẢN TOOL -->
+    <section class="section" id="phienban">
+      <div class="section-heading">
+        <span class="tag">HỆ THỐNG CÔNG CỤ</span>
+        <h2>Các Phiên Bản Tool</h2>
+        <p>
+          Lựa chọn công cụ phù hợp với nhu cầu tu luyện của bạn.
+          Các phiên bản đang được phát triển và cập nhật.
         </p>
       </div>
 
-      <div class="tools-grid">
+      <div class="card-grid">
 
-        <article class="tool-card">
-          <div class="tool-icon">📱</div>
-          <h3>Tool Tru Thần</h3>
-          <p>
-            Khu vực giới thiệu và quản lý công cụ hỗ trợ của bạn.
-          </p>
-          <a href="phienbantool.html" class="tool-link">
-            Tìm hiểu thêm →
+        <article class="card">
+          <div class="card-icon">🏯</div>
+          <h3>Phiên Bản 1</h3>
+          <p>Hỗ trợ tự động chạy phó bản và các thao tác liên quan.</p>
+          <a href="phienbantool.html#ban1" class="card-link">
+            Xem chi tiết
           </a>
         </article>
 
-        <article class="tool-card">
-          <div class="tool-icon">💬</div>
-          <h3>Hỗ trợ &amp; hướng dẫn</h3>
-          <p>
-            Khu Vực Hỗ Trợ. Hãy liên hệ ngay
-            khi gặp vấn đề trong quá trình sử dụng.
-          </p>
-          <a href="lienhe.html" class="tool-link">
-            Liên hệ ngay →
+        <article class="card">
+          <div class="card-icon">📜</div>
+          <h3>Phiên Bản 2</h3>
+          <p>Hỗ trợ tự động thực hiện nhiệm vụ theo cấu hình.</p>
+          <a href="phienbantool.html#ban2" class="card-link">
+            Xem chi tiết
           </a>
         </article>
 
+        <article class="card">
+          <div class="card-icon">⚔️</div>
+          <h3>Phiên Bản 3</h3>
+          <p>Hỗ trợ auto train và ăn thỏ theo tính năng của phiên bản.</p>
+          <a href="phienbantool.html#ban3" class="card-link">
+            Xem chi tiết
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🐉</div>
+          <h3>Phiên Bản 5</h3>
+          <p>Hỗ trợ các thao tác tự động săn boss trong game.</p>
+          <a href="phienbantool.html#ban5" class="card-link">
+            Xem chi tiết
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🔮</div>
+          <h3>Phiên Bản 6</h3>
+          <p>Bộ công cụ tích hợp nhiều chức năng hỗ trợ tu luyện.</p>
+          <a href="phienbantool.html#ban6" class="card-link">
+            Xem chi tiết
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🛠️</div>
+          <h3>Đang cập nhật</h3>
+          <p>Theo dõi các tính năng mới và thông báo cập nhật tool.</p>
+          <a href="phienbantool.html#capnhat" class="card-link">
+            Xem cập nhật
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CÀY THUÊ -->
+    <section class="section section-alt" id="dichvu">
+      <div class="section-heading">
+        <span class="tag">DỊCH VỤ TU LUYỆN</span>
+        <h2>Cày Thuê Theo Yêu Cầu</h2>
+        <p>
+          Lựa chọn dịch vụ theo mục tiêu nhân vật, thời gian
+          và nhu cầu của bạn.
+        </p>
+      </div>
+
+      <div class="service-grid">
+
+        <article class="service-card">
+          <div class="service-icon">⚔️</div>
+          <h3>Cày Thuê Level</h3>
+          <p>
+            Cày cấp độ nhân vật theo mốc LV mục tiêu.
+            Trao đổi trước về tiến độ và thời gian hoàn thành.
+          </p>
+          <a href="lienhe.html" class="service-btn">
+            Đăng ký dịch vụ
+          </a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🐉</div>
+          <h3>Cày Acc Theo Yêu Cầu</h3>
+          <p>
+            Hỗ trợ phát triển tài khoản, hoàn thành mục tiêu
+            và nâng cấp nhân vật theo yêu cầu.
+          </p>
+          <a href="lienhe.html" class="service-btn">
+            Đăng ký dịch vụ
+          </a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🏯</div>
+          <h3>Cày Phó Bản</h3>
+          <p>
+            Hỗ trợ chạy phó bản, hoàn thành nhiệm vụ
+            và săn phần thưởng trong game.
+          </p>
+          <a href="lienhe.html" class="service-btn">
+            Đăng ký dịch vụ
+          </a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3>Trang Bị & Nâng Cấp</h3>
+          <p>
+            Hỗ trợ săn trang bị, thu thập nguyên liệu
+            và nâng cấp nhân vật theo mục tiêu.
+          </p>
+          <a href="lienhe.html" class="service-btn">
+            Đăng ký dịch vụ
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ACC CLONE VÀ VẬT PHẨM -->
+    <section class="section" id="clone">
+      <div class="section-heading">
+        <span class="tag">KHO TÀI NGUYÊN</span>
+        <h2>Acc Clone & Vật Phẩm SLL</h2>
+        <p>
+          Tiếp nhận nhu cầu tài khoản và vật phẩm game
+          với số lượng lớn theo thỏa thuận.
+        </p>
+      </div>
+
+      <div class="clone-grid">
+
+        <article class="service-card">
+          <div class="service-icon">👥</div>
+          <h3>Cung Cấp Acc Clone</h3>
+          <p>
+            Tiếp nhận yêu cầu tài khoản clone theo số lượng,
+            tình trạng tài khoản và nhu cầu sử dụng.
+          </p>
+          <a href="lienhe.html" class="service-btn">
+            Liên hệ báo giá
+          </a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">💎</div>
+          <h3>Vật Phẩm Game SLL</h3>
+          <p>
+            Tiếp nhận yêu cầu về loại vật phẩm, số lượng
+            và thời gian giao dịch.
+          </p>
+          <a href="lienhe.html" class="service-btn">
+            Liên hệ báo giá
+          </a>
+        </article>
+
+      </div>
+
+      <p class="service-note">
+        Giá dịch vụ và tình trạng hàng được xác nhận khi liên hệ.
+        Giao dịch cần tuân thủ quy định của trò chơi và sử dụng
+        tài khoản hợp lệ.
+      </p>
+    </section>
+
+    <!-- HƯỚNG DẪN -->
+    <section class="section section-alt" id="huongdan">
+      <div class="section-heading">
+        <span class="tag">HƯỚNG DẪN SỬ DỤNG</span>
+        <h2>Bắt Đầu Như Thế Nào?</h2>
+        <p>Ba bước đơn giản để tìm hiểu công cụ và dịch vụ.</p>
+      </div>
+
+      <div class="steps">
+
+        <article class="step">
+          <div class="step-number">1</div>
+          <h3>Chọn phiên bản</h3>
+          <p>
+            Xem chức năng từng phiên bản và chọn công cụ
+            phù hợp với thiết bị.
+          </p>
+        </article>
+
+        <article class="step">
+          <div class="step-number">2</div>
+          <h3>Liên hệ tư vấn</h3>
+          <p>
+            Trao đổi về tính năng, dịch vụ, giá và
+            tình trạng cập nhật.
+          </p>
+        </article>
+
+        <article class="step">
+          <div class="step-number">3</div>
+          <h3>Bắt đầu sử dụng</h3>
+          <p>
+            Làm theo hướng dẫn và kiểm tra các điều kiện
+            sử dụng trước khi bắt đầu.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- LIÊN HỆ -->
+    <section class="section" id="lienhe">
+      <div class="contact-box">
+        <span class="tag">HỖ TRỢ ĐẠO HỮU</span>
+        <h2>Cần Hỗ Trợ?</h2>
+        <p>
+          Liên hệ để hỏi về phiên bản tool, cày thuê,
+          tài khoản clone hoặc vật phẩm game.
+        </p>
+
+        <a href="lienhe.html" class="btn btn-primary">
+          Đi đến trang liên hệ
+        </a>
       </div>
     </section>
 
@@ -454,9 +752,16 @@
 
   <!-- CHÂN TRANG -->
   <footer>
-    <p>© 2026 TOOL TRU THẦN</p>
-    <p>Đồng hành cùng game thủ Việt.</p>
-    <a href="lienhe.html">Liên hệ hỗ trợ</a>
+    <p><strong>⚔ TOOL TRU THẦN</strong> — Đồng hành tu luyện</p>
+    <p>
+      Website giới thiệu công cụ và dịch vụ hỗ trợ game Tru Thần.
+    </p>
+    <p>
+      <a href="#trangchu">Về đầu trang</a>
+      &nbsp;|&nbsp;
+      <a href="lienhe.html">Liên hệ</a>
+    </p>
+    <p>© 2026 TOOL TRU THẦN. All rights reserved.</p>
   </footer>
 
 </body>
