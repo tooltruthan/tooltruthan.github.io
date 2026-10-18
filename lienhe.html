@@ -232,7 +232,8 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 420px);
+      justify-content: center;
       gap: 18px;
     }
 
@@ -254,16 +255,8 @@
       background: var(--panel-light);
     }
 
-    .facebook:hover {
-      border-color: #3985ff;
-    }
-
     .zalo:hover {
       border-color: #38a7ff;
-    }
-
-    .email:hover {
-      border-color: var(--gold);
     }
 
     .contact-icon {
@@ -513,51 +506,23 @@
     <section id="contact">
       <div class="section-heading">
         <h2>📞 Kênh liên hệ</h2>
-        <p>Chọn một kênh bên dưới để kết nối với bộ phận hỗ trợ.</p>
+        <p>Liên hệ hỗ trợ qua nhóm Zalo chính thức.</p>
       </div>
 
       <div class="contact-grid">
 
         <a
-          class="contact-card facebook"
-          href="https://www.facebook.com/share/14wNcdmRKuF/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Liên hệ qua Facebook"
-        >
-          <div class="contact-icon">📘</div>
-          <div class="contact-info">
-            <h3>Facebook</h3>
-            <p>Nhắn tin để được tư vấn và hỗ trợ.</p>
-            <span class="contact-action">Mở Facebook ↗</span>
-          </div>
-        </a>
-
-        <a
           class="contact-card zalo"
-          href="https://zalo.me/0776912430"
+          href="https://zalo.me/g/aoogi79hdwl6zuqstckx"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Liên hệ qua Zalo"
+          aria-label="Liên hệ qua nhóm Zalo"
         >
           <div class="contact-icon">💬</div>
           <div class="contact-info">
             <h3>Zalo</h3>
-            <p>Trao đổi về bot, cài đặt và sửa lỗi.</p>
-            <span class="contact-action">Mở Zalo ↗</span>
-          </div>
-        </a>
-
-        <a
-          class="contact-card email"
-          href="mailto:tranvantoan4200@gmail.com"
-          aria-label="Liên hệ qua Email"
-        >
-          <div class="contact-icon">✉️</div>
-          <div class="contact-info">
-            <h3>Email</h3>
-            <p>tranvantoan4200@gmail.com</p>
-            <span class="contact-action">Gửi email ↗</span>
+            <p>Nhóm Zalo — tư vấn, bot, cài đặt và cấp key.</p>
+            <span class="contact-action">Mở nhóm Zalo ↗</span>
           </div>
         </a>
 
