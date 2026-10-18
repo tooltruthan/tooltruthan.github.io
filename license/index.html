@@ -8,7 +8,10 @@
     :root { --bg:#0f1419; --card:#1a222c; --ink:#e8eef4; --muted:#8a9aab; --acc:#c9a227; --ok:#3dba7a; --bad:#e85d5d; }
     * { box-sizing: border-box; }
     body { margin:0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--ink); }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 48px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+    .note-cell { display:flex; flex-direction:column; gap:6px; min-width:140px; max-width:220px; }
+    .note-cell input { padding:7px 9px; font-size:.8rem; }
+    .note-cell .small { align-self:flex-start; }
     h1 { font-size: 1.4rem; margin: 0 0 6px; color: var(--acc); }
     p.sub { color: var(--muted); margin: 0 0 20px; font-size: .92rem; }
     .card { background: var(--card); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; border: 1px solid #2a3542; }
@@ -112,9 +115,9 @@
       <div style="overflow-x:auto; margin-top:10px">
         <table>
           <thead>
-            <tr><th>Key</th><th>Loại</th><th>Quyền</th><th>Hết hạn</th><th>Mã máy / Nhân vật</th><th></th></tr>
+            <tr><th>Key</th><th>Loại</th><th>Quyền</th><th>Hết hạn</th><th>Ghi chú</th><th>Mã máy / Nhân vật</th><th></th></tr>
           </thead>
-          <tbody id="tbody"><tr><td colspan="6" style="color:var(--muted)">Chưa tải.</td></tr></tbody>
+          <tbody id="tbody"><tr><td colspan="7" style="color:var(--muted)">Chưa tải.</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -223,7 +226,7 @@
           binds[b.key].push(b);
         });
         if (!data.licenses || !data.licenses.length) {
-          tb.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">Chưa có key.</td></tr>';
+          tb.innerHTML = '<tr><td colspan="7" style="color:var(--muted)">Chưa có key.</td></tr>';
           return;
         }
         tb.innerHTML = data.licenses.map((l) => {
@@ -238,8 +241,14 @@
           const delBtn = canDelete
             ? '<button type="button" class="secondary small" onclick="removeKey(\'' + esc(l.key) + '\')">Xóa</button>'
             : "";
+          const noteCell =
+            '<div class="note-cell">' +
+            '<input class="note-input" type="text" maxlength="500" placeholder="vd: khách A, Zalo…" value="' + esc(l.note || "") + '" />' +
+            '<button type="button" class="secondary small" onclick="saveNote(\'' + esc(l.key) + '\', this)">Lưu ghi chú</button>' +
+            "</div>";
           return "<tr><td><code>" + esc(l.key) + "</code>" + dead + "</td><td>" + esc(l.tier) +
             "</td><td>" + esc(l.perms || "") + "</td><td>" + exp +
+            "</td><td>" + noteCell +
             "</td><td>" + deviceCell(devices, l.max_devices) +
             '</td><td class="actions">' +
             unlockBtn +
@@ -248,7 +257,22 @@
             "</td></tr>";
         }).join("");
       } catch (e) {
-        $("tbody").innerHTML = '<tr><td colspan="6" style="color:var(--bad)">' + esc(e.message || e) + "</td></tr>";
+        $("tbody").innerHTML = '<tr><td colspan="7" style="color:var(--bad)">' + esc(e.message || e) + "</td></tr>";
+      }
+    }
+    async function saveNote(key, btn) {
+      try {
+        saveCfg();
+        const input = btn && btn.closest ? btn.closest("tr").querySelector(".note-input") : null;
+        const note = input ? input.value : "";
+        await api("/api/admin/note", {
+          method: "POST",
+          body: JSON.stringify({ key, note }),
+        });
+        btn.textContent = "Đã lưu";
+        setTimeout(function () { btn.textContent = "Lưu ghi chú"; }, 1200);
+      } catch (e) {
+        alert(e.message || e);
       }
     }
     async function revoke(key) {
