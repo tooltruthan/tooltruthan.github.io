@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TruThan — Quản lý Key Tool</title>
+  <style>
+    :root { --bg:#0f1419; --card:#1a222c; --ink:#e8eef4; --muted:#8a9aab; --acc:#c9a227; --ok:#3dba7a; --bad:#e85d5d; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--ink); }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 48px; }
+    h1 { font-size: 1.4rem; margin: 0 0 6px; color: var(--acc); }
+    p.sub { color: var(--muted); margin: 0 0 20px; font-size: .92rem; }
+    .card { background: var(--card); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; border: 1px solid #2a3542; }
+    label { display:block; font-size:.8rem; color: var(--muted); margin: 10px 0 4px; }
+    input, select, textarea { width:100%; padding:10px 12px; border-radius:8px; border:1px solid #334155; background:#0f1720; color:var(--ink); }
+    .row { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    @media (max-width:640px){ .row { grid-template-columns:1fr; } }
+    button { margin-top:14px; padding:10px 16px; border:0; border-radius:8px; background:var(--acc); color:#1a1200; font-weight:700; cursor:pointer; }
+    button.secondary { background:#334155; color:var(--ink); margin-left:8px; }
+    button.danger { background:var(--bad); color:#fff; }
+    table { width:100%; border-collapse: collapse; font-size:.85rem; }
+    th, td { text-align:left; padding:8px 6px; border-bottom:1px solid #2a3542; vertical-align:top; }
+    th { color: var(--muted); font-weight:600; }
+    .msg { margin-top:12px; padding:10px 12px; border-radius:8px; background:#0f1720; white-space:pre-wrap; word-break:break-all; }
+    .msg.ok { border-left: 3px solid var(--ok); }
+    .msg.err { border-left: 3px solid var(--bad); }
+    .hint { font-size:.8rem; color:var(--muted); margin-top:8px; }
+    a { color: var(--acc); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Quản lý Key — TruThan Tool</h1>
+    <p class="sub">Trang riêng <code>/license/</code> — không đụng web chính. API chạy trên Cloudflare Worker + D1.</p>
+
+    <div class="card">
+      <label>API Worker URL</label>
+      <input id="api" value="https://truthan-license-api8.0396101452toan.workers.dev" />
+      <label>Admin Token</label>
+      <input id="token" type="password" placeholder="Dán ADMIN_TOKEN" autocomplete="off" />
+      <p class="hint">Token admin chỉ dùng trên máy bạn (lưu localStorage). Không đưa công khai.</p>
+      <button type="button" onclick="saveCfg()">Lưu cấu hình</button>
+      <button type="button" class="secondary" onclick="loadList()">Tải danh sách key</button>
+    </div>
+
+    <div class="card">
+      <strong>Tạo key mới</strong>
+      <div class="row">
+        <div>
+          <label>Loại</label>
+          <select id="tier">
+            <option value="thuong">Thường</option>
+            <option value="vip">VIP</option>
+            <option value="chiton">Chí tôn</option>
+          </select>
+        </div>
+        <div>
+          <label>Số ngày</label>
+          <input id="days" type="number" value="30" min="1" />
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Quyền (all hoặc pb,nv,lc,train,tho,pk,boss)</label>
+          <input id="perms" value="all" />
+        </div>
+        <div>
+          <label>Số máy tối đa</label>
+          <input id="maxd" type="number" value="1" min="1" />
+        </div>
+      </div>
+      <label>Ghi chú</label>
+      <input id="note" placeholder="vd: Toan — tháng 10" />
+      <button type="button" onclick="createKey()">Tạo key</button>
+      <div id="createMsg" class="msg" style="display:none"></div>
+    </div>
+
+    <div class="card">
+      <strong>Danh sách key</strong>
+      <div style="overflow-x:auto; margin-top:10px">
+        <table>
+          <thead>
+            <tr><th>Key</th><th>Loại</th><th>Hết hạn</th><th>Máy</th><th></th></tr>
+          </thead>
+          <tbody id="tbody"><tr><td colspan="5" style="color:var(--muted)">Chưa tải.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="hint"><a href="../index.html">← Về trang chủ web</a></p>
+  </div>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    function saveCfg() {
+      localStorage.setItem("tt_lic_api", $("api").value.trim());
+      localStorage.setItem("tt_lic_tok", $("token").value.trim());
+      show("createMsg", "Đã lưu cấu hình trên trình duyệt này.", true);
+    }
+    function loadCfg() {
+      $("api").value = localStorage.getItem("tt_lic_api") || $("api").value;
+      $("token").value = localStorage.getItem("tt_lic_tok") || "";
+    }
+    function show(id, text, ok) {
+      const el = $(id);
+      el.style.display = "block";
+      el.className = "msg " + (ok ? "ok" : "err");
+      el.textContent = text;
+    }
+    async function api(path, opts = {}) {
+      const base = $("api").value.replace(/\/$/, "");
+      const headers = Object.assign({ "Content-Type": "application/json", "X-Admin-Token": $("token").value.trim() }, opts.headers || {});
+      const res = await fetch(base + path, Object.assign({}, opts, { headers }));
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.ok === false) throw new Error(data.msg || ("HTTP " + res.status));
+      return data;
+    }
+    async function createKey() {
+      try {
+        saveCfg();
+        const data = await api("/api/admin/create", {
+          method: "POST",
+          body: JSON.stringify({
+            tier: $("tier").value,
+            days: Number($("days").value),
+            perms: $("perms").value,
+            max_devices: Number($("maxd").value),
+            note: $("note").value,
+          }),
+        });
+        show("createMsg", "KEY: " + data.key + "\nLoại: " + data.tier + "\nHết hạn: " + new Date(data.expires_at).toLocaleString(), true);
+        loadList();
+      } catch (e) {
+        show("createMsg", String(e.message || e), false);
+      }
+    }
+    async function loadList() {
+      try {
+        const data = await api("/api/admin/list");
+        const tb = $("tbody");
+        const binds = {};
+        (data.bindings || []).forEach((b) => {
+          binds[b.key] = (binds[b.key] || 0) + 1;
+        });
+        if (!data.licenses || !data.licenses.length) {
+          tb.innerHTML = '<tr><td colspan="5" style="color:var(--muted)">Chưa có key.</td></tr>';
+          return;
+        }
+        tb.innerHTML = data.licenses.map((l) => {
+          const exp = new Date(Number(l.expires_at)).toLocaleString();
+          const dead = l.disabled ? " (KHÓA)" : "";
+          return "<tr><td><code>" + l.key + "</code>" + dead + "</td><td>" + l.tier + "</td><td>" + exp +
+            "</td><td>" + (binds[l.key] || 0) + "/" + l.max_devices +
+            '</td><td><button type="button" class="danger" onclick="revoke(\'' + l.key + '\')">Khóa</button></td></tr>';
+        }).join("");
+      } catch (e) {
+        $("tbody").innerHTML = '<tr><td colspan="5" style="color:var(--bad)">' + (e.message || e) + "</td></tr>";
+      }
+    }
+    async function revoke(key) {
+      if (!confirm("Khóa key " + key + "?")) return;
+      try {
+        await api("/api/admin/revoke", { method: "POST", body: JSON.stringify({ key }) });
+        loadList();
+      } catch (e) {
+        alert(e.message || e);
+      }
+    }
+    loadCfg();
+  </script>
+</body>
+</html>
