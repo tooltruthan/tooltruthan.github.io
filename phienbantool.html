@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10111b">
-<meta name="description" content="Danh sách các phiên bản Tool Tru Thần: Auto phó bản, nhiệm vụ, train, săn boss và tool tích hợp.">
+<meta name="description" content="Bảng giá & tính năng key Tool Tru Thần: Thường, VIP, Chí tôn — Auto phó bản, train, nhiệm vụ, thỏ, PK, boss.">
 
-<title>Phiên Bản Tool - TRU THẦN</title>
+<title>Phiên Bản Tool & Bảng Giá - TRU THẦN</title>
 
 <!-- TẢI MENU VÀ FOOTER DÙNG CHUNG -->
 <script src="menu.js" defer></script>
@@ -269,10 +269,189 @@ h1 span {
   color: var(--gold);
 }
 
+/* BẢNG GIÁ & TÍNH NĂNG */
+.price-block {
+  margin-top: 36px;
+}
+
+.price-block + .price-block {
+  margin-top: 42px;
+}
+
+.tier-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 14px;
+}
+
+.tier-head h2 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.tier-head h2 span {
+  color: var(--gold);
+}
+
+.tier-tag {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: #ffffff06;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 14px;
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff05;
+  list-style: none;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.feature-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.feature-list li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: linear-gradient(145deg, #202235, #151622);
+}
+
+table.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+  font-size: 13px;
+}
+
+.price-table th,
+.price-table td {
+  padding: 11px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+.price-table th {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  background: #ffffff06;
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.price-table tbody tr:hover td {
+  background: #f2c66d08;
+}
+
+.price-table td.price {
+  color: #f6d88d;
+  font-weight: bold;
+}
+
+.price-table td.muted {
+  color: var(--muted);
+}
+
+.price-note {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.chiton-box {
+  padding: 20px 18px;
+  border: 1px solid rgba(242, 198, 109, 0.55);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #30253b, #191927);
+}
+
+.chiton-price {
+  margin: 8px 0 6px;
+  font-size: clamp(26px, 5vw, 34px);
+  color: var(--gold);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.chiton-box p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.chiton-box p strong {
+  color: var(--text);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 8px 0 22px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.legend i.dim {
+  background: #7a7e94;
+}
+
 /* TABLET */
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -294,7 +473,8 @@ h1 span {
     padding: 15px 16px 45px;
   }
 
-  .section-title h2 {
+  .section-title h2,
+  .tier-head h2 {
     font-size: 18px;
   }
 
@@ -318,6 +498,11 @@ h1 span {
 
   .notice {
     padding: 15px;
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: 10px 11px;
   }
 }
 
@@ -346,13 +531,11 @@ h1 span {
   </h1>
 
   <p>
-    Khám phá các phiên bản hỗ trợ game Tru Thần.
-    Chọn phiên bản phù hợp với nhu cầu của bạn.
-    Các tính năng mới sẽ được cập nhật tại đây.
+    Bảng tính năng và giá key theo giờ / ngày / tháng.
+    Key Thường chọn 1 quyền · VIP mở all quyền · Chí tôn vĩnh viễn đến khi game sập.
   </p>
 </section>
 
-<!-- DANH SÁCH PHIÊN BẢN -->
 <main class="container">
 
   <div class="section-title">
@@ -361,34 +544,207 @@ h1 span {
   </div>
 
   <div class="grid">
-
     <article class="card featured">
       <div class="card-top">
         <span class="number">VERSION 01</span>
-        <span class="status">Đang phát triển</span>
+        <span class="status ready">Đang bán key</span>
       </div>
-
-      <div class="symbol">✨</div>
-
+      <div class="symbol">✦</div>
       <h3>Bản 1 — Tool tích hợp</h3>
-
       <p>
-        Phiên bản tổng hợp nhiều tính năng trong một giao diện,
-        hướng đến trải nghiệm thuận tiện.
+        Gộp Auto Phó bản, Nhiệm vụ, Train, Linh Châu, Thỏ, PK, Boss
+        trong một giao diện. Xem bảng giá key bên dưới.
       </p>
-
-      <a class="btn primary" href="dangcapnhat.html">
-        Thông tin phiên bản
+      <a class="btn primary" href="#bang-gia">
+        Xem bảng giá →
       </a>
     </article>
-
   </div>
 
+  <!-- BẢNG GIÁ -->
+  <div id="bang-gia" class="price-block">
+    <div class="section-title">
+      <h2>Bảng giá &amp; tính năng key</h2>
+      <span class="count">3 loại key</span>
+    </div>
+
+    <div class="legend">
+      <span><i></i> Giá cao: Auto Train / Auto Phó bản (và Boss, Linh Châu)</span>
+      <span><i class="dim"></i> Giá nhẹ: Auto Nhiệm vụ / Thỏ / PK</span>
+    </div>
+  </div>
+
+  <!-- KEY THƯỜNG -->
+  <section class="price-block">
+    <div class="tier-head">
+      <h2>Key <span>Thường</span></h2>
+      <span class="tier-tag">1 quyền · 1 máy · 1 nhân vật</span>
+    </div>
+
+    <ul class="feature-list">
+      <li><strong>pb</strong> — Auto Phó bản</li>
+      <li><strong>train</strong> — Treo theo vị trí</li>
+      <li><strong>boss</strong> — Auto Boss</li>
+      <li><strong>lc</strong> — Train Linh Châu</li>
+      <li><strong>nv</strong> — Auto Nhiệm vụ</li>
+      <li><strong>tho</strong> — Auto thỏ</li>
+      <li><strong>pk</strong> — Auto PK</li>
+      <li>Chọn đúng 1 quyền khi mua key</li>
+    </ul>
+
+    <div class="table-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Thời hạn</th>
+            <th>Train / Phó bản / Boss / LC</th>
+            <th>Nhiệm vụ / Thỏ / PK</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 giờ</td>
+            <td class="price">5.000đ</td>
+            <td class="price">5.000đ</td>
+          </tr>
+          <tr>
+            <td>3 giờ</td>
+            <td class="price">10.000đ</td>
+            <td class="price">5.000đ</td>
+          </tr>
+          <tr>
+            <td>12 giờ</td>
+            <td class="price">15.000đ</td>
+            <td class="price">10.000đ</td>
+          </tr>
+          <tr>
+            <td>24 giờ</td>
+            <td class="price">25.000đ</td>
+            <td class="price">15.000đ</td>
+          </tr>
+          <tr>
+            <td>48 giờ</td>
+            <td class="price">30.000đ</td>
+            <td class="price">15.000đ</td>
+          </tr>
+          <tr>
+            <td>72 giờ</td>
+            <td class="price">40.000đ</td>
+            <td class="price">20.000đ</td>
+          </tr>
+          <tr>
+            <td>7 ngày</td>
+            <td class="price">70.000đ</td>
+            <td class="price">35.000đ</td>
+          </tr>
+          <tr>
+            <td>30 ngày</td>
+            <td class="price">200.000đ</td>
+            <td class="price">100.000đ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="price-note">
+      Gói thấp nhất: <strong style="color:var(--text)">5.000đ / 1 giờ</strong>.
+      Giá cột phải giảm dần từ mốc 100.000đ / 30 ngày (NV · Thỏ · PK).
+    </p>
+  </section>
+
+  <!-- KEY VIP -->
+  <section class="price-block">
+    <div class="tier-head">
+      <h2>Key <span>VIP</span></h2>
+      <span class="tier-tag">All quyền · 1 máy · 1 nhân vật</span>
+    </div>
+
+    <ul class="feature-list">
+      <li><strong>All quyền</strong> — PB + NV + LC + Train + Thỏ + PK + Boss</li>
+      <li>Cùng hạn giờ với key Thường</li>
+      <li>1 máy / 1 nhân vật / 1 phiên</li>
+      <li>Đổi quyền tự do trong thời hạn key</li>
+    </ul>
+
+    <div class="table-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Thời hạn</th>
+            <th>Giá VIP (all quyền)</th>
+            <th class="muted">So với Thường cao cấp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 giờ</td>
+            <td class="price">15.000đ</td>
+            <td class="muted">×3 gói 5k</td>
+          </tr>
+          <tr>
+            <td>3 giờ</td>
+            <td class="price">25.000đ</td>
+            <td class="muted">≈ 2.5×</td>
+          </tr>
+          <tr>
+            <td>12 giờ</td>
+            <td class="price">40.000đ</td>
+            <td class="muted">≈ 2.5×</td>
+          </tr>
+          <tr>
+            <td>24 giờ</td>
+            <td class="price">50.000đ</td>
+            <td class="muted">×2</td>
+          </tr>
+          <tr>
+            <td>48 giờ</td>
+            <td class="price">70.000đ</td>
+            <td class="muted">≈ 2.3×</td>
+          </tr>
+          <tr>
+            <td>72 giờ</td>
+            <td class="price">90.000đ</td>
+            <td class="muted">≈ 2.3×</td>
+          </tr>
+          <tr>
+            <td>7 ngày</td>
+            <td class="price">130.000đ</td>
+            <td class="muted">≈ 1.9×</td>
+          </tr>
+          <tr>
+            <td>30 ngày</td>
+            <td class="price">400.000đ</td>
+            <td class="muted">×2 · gói bán chạy</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- KEY CHÍ TÔN -->
+  <section class="price-block">
+    <div class="tier-head">
+      <h2>Key <span>Chí tôn</span></h2>
+      <span class="tier-tag">Vĩnh viễn · không giới hạn máy / NV</span>
+    </div>
+
+    <div class="chiton-box">
+      <div class="chiton-price">35.000.000đ</div>
+      <p>
+        <strong>All quyền</strong> — hỗ trợ đến khi game sập · cập nhật bản mới nhất suốt thời gian dùng.
+        Không hết hạn, không giới hạn số máy / nhân vật.
+      </p>
+      <ul class="feature-list" style="margin:14px 0 0; background:transparent; border:none; padding:0;">
+        <li>Full Auto: Phó bản, NV, LC, Train, Thỏ, PK, Boss</li>
+        <li>Ưu tiên hỗ trợ &amp; nhận bản update sớm</li>
+        <li>Key vĩnh viễn — dùng đến khi server game dừng</li>
+      </ul>
+    </div>
+  </section>
+
   <div class="notice">
-    <strong>✦ Thông báo cập nhật</strong><br>
-    Các phiên bản chưa có liên kết tải chính thức sẽ hiển thị trạng thái
-    đang cập nhật. Vui lòng theo dõi website để biết thông tin mới nhất.
-    Chỉ tải file từ nguồn chính thức.
+    <strong>✦ Lưu ý mua key</strong><br>
+    Key Thường &amp; VIP: đúng 1 máy / 1 nhân vật. Chỉ mua qua kênh liên hệ chính thức.
+    Giá có thể điều chỉnh theo cập nhật tính năng — luôn xem bảng trên trang này trước khi thanh toán.
   </div>
 
 </main>
