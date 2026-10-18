@@ -517,6 +517,10 @@ table.price-table {
     padding: 5px 7px;
   }
 }
+  /* Chỉ bỏ dấu check của Key Thường */
+.feature-list.no-check li::before {
+  content: none;
+}
 </style>
 </head>
 
@@ -547,22 +551,23 @@ table.price-table {
   </div>
 
   <!-- KEY THƯỜNG -->
-  <section class="price-block">
-    <div class="tier-head">
-      <h2>Key <span>Thường</span></h2>
-      <span class="tier-tag">1 quyền · 1 máy · 1 nhân vật</span>
-    </div>
+<section class="price-block">
+  <div class="tier-head">
+    <h2>Key <span>Thường</span></h2>
+    <span class="tier-tag">1 quyền · 1 máy · 1 nhân vật</span>
+  </div>
 
-    <ul class="feature-list">
-  <li><strong>Auto Phó bản</strong></li>
-  <li><strong>Treo theo vị trí</strong></li>
-  <li><strong>Auto Boss</strong></li>
-  <li><strong>Train Linh Châu</strong></li>
-  <li><strong>Auto Nhiệm vụ</strong></li>
-  <li><strong>Auto ăn thỏ</strong></li>
-  <li><strong>Auto PK</strong></li>
-  <li>Chọn đúng 1 quyền khi mua key</li>
-</ul>
+  <ul class="feature-list no-check">
+    <li><strong>Auto Phó bản</strong></li>
+    <li><strong>Treo theo vị trí</strong></li>
+    <li><strong>Auto Boss</strong></li>
+    <li><strong>Train Linh Châu</strong></li>
+    <li><strong>Auto Nhiệm vụ</strong></li>
+    <li><strong>Auto ăn thỏ</strong></li>
+    <li><strong>Auto PK</strong></li>
+    <li>Chọn đúng 1 quyền khi mua key</li>
+  </ul>
+</section>
     <div class="table-wrap">
       <table class="price-table">
         <thead>
