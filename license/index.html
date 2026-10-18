@@ -25,8 +25,9 @@
     .msg { margin-top:12px; padding:10px 12px; border-radius:8px; background:#0f1720; white-space:pre-wrap; word-break:break-all; }
     .msg.ok { border-left: 3px solid var(--ok); }
     .msg.err { border-left: 3px solid var(--bad); }
-    .hint { font-size:.8rem; color:var(--muted); margin-top:8px; }
+    .hint { font-size:.8rem; color: var(--muted); margin-top:8px; }
     a { color: var(--acc); }
+    .rules { font-size:.82rem; color: var(--muted); margin: 8px 0 0; line-height:1.45; }
   </style>
 </head>
 <body>
@@ -46,24 +47,45 @@
 
     <div class="card">
       <strong>Tạo key mới</strong>
+      <p class="rules">
+        · Thường: chọn 1 quyền + hạn 1h/3h/12h/24h/48h/72h<br />
+        · VIP: quyền all + hạn giờ như trên<br />
+        · Chí tôn: quyền all, không hết hạn
+      </p>
       <div class="row">
         <div>
           <label>Loại</label>
-          <select id="tier">
+          <select id="tier" onchange="syncForm()">
             <option value="thuong">Thường</option>
             <option value="vip">VIP</option>
             <option value="chiton">Chí tôn</option>
           </select>
         </div>
-        <div>
-          <label>Số ngày</label>
-          <input id="days" type="number" value="30" min="1" />
+        <div id="hoursWrap">
+          <label>Hạn sử dụng</label>
+          <select id="hours">
+            <option value="1">1 giờ</option>
+            <option value="3">3 giờ</option>
+            <option value="12">12 giờ</option>
+            <option value="24" selected>24 giờ</option>
+            <option value="48">48 giờ</option>
+            <option value="72">72 giờ</option>
+          </select>
         </div>
       </div>
       <div class="row">
-        <div>
-          <label>Quyền (all hoặc pb,nv,lc,train,tho,pk,boss)</label>
-          <input id="perms" value="all" />
+        <div id="permsWrap">
+          <label>Quyền</label>
+          <select id="perms">
+            <option value="pb">pb — Phó bản</option>
+            <option value="nv">nv — Nhiệm vụ</option>
+            <option value="lc">lc — Luyện công</option>
+            <option value="train">train — Train</option>
+            <option value="tho">tho — Auto thỏ</option>
+            <option value="pk">pk — Auto PK</option>
+            <option value="boss">boss — Boss</option>
+          </select>
+          <p id="permsHint" class="hint"></p>
         </div>
         <div>
           <label>Số máy tối đa</label>
@@ -71,7 +93,7 @@
         </div>
       </div>
       <label>Ghi chú</label>
-      <input id="note" placeholder="vd: Toan — tháng 10" />
+      <input id="note" placeholder="vd: Toan — test" />
       <button type="button" onclick="createKey()">Tạo key</button>
       <div id="createMsg" class="msg" style="display:none"></div>
     </div>
@@ -81,9 +103,9 @@
       <div style="overflow-x:auto; margin-top:10px">
         <table>
           <thead>
-            <tr><th>Key</th><th>Loại</th><th>Hết hạn</th><th>Máy</th><th></th></tr>
+            <tr><th>Key</th><th>Loại</th><th>Quyền</th><th>Hết hạn</th><th>Máy</th><th></th></tr>
           </thead>
-          <tbody id="tbody"><tr><td colspan="5" style="color:var(--muted)">Chưa tải.</td></tr></tbody>
+          <tbody id="tbody"><tr><td colspan="6" style="color:var(--muted)">Chưa tải.</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -100,6 +122,28 @@
     function loadCfg() {
       $("api").value = localStorage.getItem("tt_lic_api") || $("api").value;
       $("token").value = localStorage.getItem("tt_lic_tok") || "";
+    }
+    function syncForm() {
+      const tier = $("tier").value;
+      const hoursWrap = $("hoursWrap");
+      const perms = $("perms");
+      const hint = $("permsHint");
+      if (tier === "chiton") {
+        hoursWrap.style.opacity = "0.45";
+        hoursWrap.style.pointerEvents = "none";
+        perms.disabled = true;
+        hint.textContent = "Chí tôn: luôn all, không hết hạn.";
+      } else if (tier === "vip") {
+        hoursWrap.style.opacity = "1";
+        hoursWrap.style.pointerEvents = "";
+        perms.disabled = true;
+        hint.textContent = "VIP: luôn all + chọn hạn giờ.";
+      } else {
+        hoursWrap.style.opacity = "1";
+        hoursWrap.style.pointerEvents = "";
+        perms.disabled = false;
+        hint.textContent = "Thường: chọn đúng 1 quyền + hạn giờ.";
+      }
     }
     function show(id, text, ok) {
       const el = $(id);
@@ -118,17 +162,22 @@
     async function createKey() {
       try {
         saveCfg();
+        const tier = $("tier").value;
+        const body = {
+          tier,
+          max_devices: Number($("maxd").value),
+          note: $("note").value,
+        };
+        if (tier !== "chiton") body.hours = Number($("hours").value);
+        if (tier === "thuong") body.perms = $("perms").value;
         const data = await api("/api/admin/create", {
           method: "POST",
-          body: JSON.stringify({
-            tier: $("tier").value,
-            days: Number($("days").value),
-            perms: $("perms").value,
-            max_devices: Number($("maxd").value),
-            note: $("note").value,
-          }),
+          body: JSON.stringify(body),
         });
-        show("createMsg", "KEY: " + data.key + "\nLoại: " + data.tier + "\nHết hạn: " + new Date(data.expires_at).toLocaleString(), true);
+        const exp = data.permanent || Number(data.expires_at) <= 0
+          ? "Không hạn"
+          : new Date(data.expires_at).toLocaleString();
+        show("createMsg", "KEY: " + data.key + "\nLoại: " + data.tier + "\nQuyền: " + data.perms + "\nHết hạn: " + exp, true);
         loadList();
       } catch (e) {
         show("createMsg", String(e.message || e), false);
@@ -143,18 +192,20 @@
           binds[b.key] = (binds[b.key] || 0) + 1;
         });
         if (!data.licenses || !data.licenses.length) {
-          tb.innerHTML = '<tr><td colspan="5" style="color:var(--muted)">Chưa có key.</td></tr>';
+          tb.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">Chưa có key.</td></tr>';
           return;
         }
         tb.innerHTML = data.licenses.map((l) => {
-          const exp = new Date(Number(l.expires_at)).toLocaleString();
+          const permanent = String(l.tier).toLowerCase() === "chiton" || Number(l.expires_at) <= 0;
+          const exp = permanent ? "Không hạn" : new Date(Number(l.expires_at)).toLocaleString();
           const dead = l.disabled ? " (KHÓA)" : "";
-          return "<tr><td><code>" + l.key + "</code>" + dead + "</td><td>" + l.tier + "</td><td>" + exp +
+          return "<tr><td><code>" + l.key + "</code>" + dead + "</td><td>" + l.tier +
+            "</td><td>" + (l.perms || "") + "</td><td>" + exp +
             "</td><td>" + (binds[l.key] || 0) + "/" + l.max_devices +
             '</td><td><button type="button" class="danger" onclick="revoke(\'' + l.key + '\')">Khóa</button></td></tr>';
         }).join("");
       } catch (e) {
-        $("tbody").innerHTML = '<tr><td colspan="5" style="color:var(--bad)">' + (e.message || e) + "</td></tr>";
+        $("tbody").innerHTML = '<tr><td colspan="6" style="color:var(--bad)">' + (e.message || e) + "</td></tr>";
       }
     }
     async function revoke(key) {
@@ -167,6 +218,7 @@
       }
     }
     loadCfg();
+    syncForm();
   </script>
 </body>
 </html>
