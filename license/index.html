@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TruThan — Quản lý Key Tool</title>
+  <title>Tru Thần — Quản lý Key Tool</title>
   <style>
     :root { --bg:#0f1419; --card:#1a222c; --ink:#e8eef4; --muted:#8a9aab; --acc:#c9a227; --ok:#3dba7a; --bad:#e85d5d; }
     * { box-sizing: border-box; }
@@ -32,15 +32,13 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>Quản lý Key — TruThan Tool</h1>
-    <p class="sub">Trang riêng <code>/license/</code> — không đụng web chính. API chạy trên Cloudflare Worker + D1.</p>
+    <h1>Quản lý Key — Tru Thần  Tool</h1>
 
     <div class="card">
       <label>API Worker URL</label>
       <input id="api" value="https://truthan-license-api8.0396101452toan.workers.dev" />
-      <label>Admin Token</label>
+      <label>Token</label>
       <input id="token" type="password" placeholder="Dán ADMIN_TOKEN" autocomplete="off" />
-      <p class="hint">Token admin chỉ dùng trên máy bạn (lưu localStorage). Không đưa công khai.</p>
       <button type="button" onclick="saveCfg()">Lưu cấu hình</button>
       <button type="button" class="secondary" onclick="loadList()">Tải danh sách key</button>
     </div>
@@ -48,9 +46,9 @@
     <div class="card">
       <strong>Tạo key mới</strong>
       <p class="rules">
-        · Thường: chọn 1 quyền + hạn 1h/3h/12h/24h/48h/72h<br />
-        · VIP: quyền all + hạn giờ như trên<br />
-        · Chí tôn: quyền all, không hết hạn
+        · Thường: 1 quyền + hạn 1h/3h/12h/24h/48h/72h.<br />
+        · VIP: All quyền + hạn giờ.<br />
+        · Chí tôn: All quyền , không hết hạn.
       </p>
       <div class="row">
         <div>
@@ -64,10 +62,10 @@
         <div id="hoursWrap">
           <label>Hạn sử dụng</label>
           <select id="hours">
-            <option value="1">1 giờ</option>
+            <option value="1" selected>1 giờ</option>
             <option value="3">3 giờ</option>
             <option value="12">12 giờ</option>
-            <option value="24" selected>24 giờ</option>
+            <option value="24">24 giờ</option>
             <option value="48">48 giờ</option>
             <option value="72">72 giờ</option>
           </select>
@@ -77,13 +75,13 @@
         <div id="permsWrap">
           <label>Quyền</label>
           <select id="perms">
-            <option value="pb">pb — Phó bản</option>
-            <option value="nv">nv — Nhiệm vụ</option>
-            <option value="lc">lc — Luyện công</option>
-            <option value="train">train — Train</option>
+            <option value="pb">pb — Auto Phó bản</option>
+            <option value="nv">nv — Auto Nhiệm vụ</option>
+            <option value="lc">lc — Train Linh Châu</option>
+            <option value="train">train — Treo theo vị trí</option>
             <option value="tho">tho — Auto thỏ</option>
             <option value="pk">pk — Auto PK</option>
-            <option value="boss">boss — Boss</option>
+            <option value="boss">boss — Auto Boss</option>
           </select>
           <p id="permsHint" class="hint"></p>
         </div>
@@ -132,17 +130,17 @@
         hoursWrap.style.opacity = "0.45";
         hoursWrap.style.pointerEvents = "none";
         perms.disabled = true;
-        hint.textContent = "Chí tôn: luôn all, không hết hạn.";
+        hint.textContent = "Chí tôn: All Quyền, không hết hạn.";
       } else if (tier === "vip") {
         hoursWrap.style.opacity = "1";
         hoursWrap.style.pointerEvents = "";
         perms.disabled = true;
-        hint.textContent = "VIP: luôn all + chọn hạn giờ.";
+        hint.textContent = "VIP:  All Quyền + hạn giờ.";
       } else {
         hoursWrap.style.opacity = "1";
         hoursWrap.style.pointerEvents = "";
         perms.disabled = false;
-        hint.textContent = "Thường: chọn đúng 1 quyền + hạn giờ.";
+        hint.textContent = "Thường: chọn 1 quyền + hạn giờ.";
       }
     }
     function show(id, text, ok) {
