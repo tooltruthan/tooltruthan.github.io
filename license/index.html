@@ -20,6 +20,7 @@
     button.secondary { background:#334155; color:var(--ink); margin-left:8px; }
     button.danger { background:var(--bad); color:#fff; }
     button.small { margin-top:0; padding:6px 10px; font-size:.78rem; margin-left:0; margin-right:6px; }
+    button.small:not(.danger):not(.secondary) { background: var(--ok); color:#062016; }
     td.actions { white-space:nowrap; }
     .dev-list { margin:0; padding:0; list-style:none; font-size:.78rem; line-height:1.4; }
     .dev-list li { margin:0 0 4px; }
@@ -228,6 +229,10 @@
           const exp = permanent ? "Không hạn" : new Date(Number(l.expires_at)).toLocaleString();
           const dead = l.disabled ? " (KHÓA)" : "";
           const devices = binds[l.key] || [];
+          // Chỉ token full (PhamCongToan2001@): Mở khóa đứng trước Khóa + nút Xóa
+          const unlockBtn = canDelete
+            ? '<button type="button" class="small" onclick="unlockKey(\'' + esc(l.key) + '\')">Mở khóa</button>'
+            : "";
           const delBtn = canDelete
             ? '<button type="button" class="secondary small" onclick="removeKey(\'' + esc(l.key) + '\')">Xóa</button>'
             : "";
@@ -235,6 +240,7 @@
             "</td><td>" + esc(l.perms || "") + "</td><td>" + exp +
             "</td><td>" + deviceCell(devices, l.max_devices) +
             '</td><td class="actions">' +
+            unlockBtn +
             '<button type="button" class="danger small" onclick="revoke(\'' + esc(l.key) + '\')">Khóa</button>' +
             delBtn +
             "</td></tr>";
@@ -247,6 +253,15 @@
       if (!confirm("Khóa key " + key + "?")) return;
       try {
         await api("/api/admin/revoke", { method: "POST", body: JSON.stringify({ key }) });
+        loadList();
+      } catch (e) {
+        alert(e.message || e);
+      }
+    }
+    async function unlockKey(key) {
+      if (!confirm("Mở khóa key " + key + "?")) return;
+      try {
+        await api("/api/admin/unlock", { method: "POST", body: JSON.stringify({ key }) });
         loadList();
       } catch (e) {
         alert(e.message || e);
