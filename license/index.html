@@ -213,6 +213,7 @@
       try {
         const data = await api("/api/admin/list");
         const tb = $("tbody");
+        const canDelete = !!data.can_delete;
         const binds = {};
         (data.bindings || []).forEach((b) => {
           if (!binds[b.key]) binds[b.key] = [];
@@ -227,12 +228,15 @@
           const exp = permanent ? "Không hạn" : new Date(Number(l.expires_at)).toLocaleString();
           const dead = l.disabled ? " (KHÓA)" : "";
           const devices = binds[l.key] || [];
+          const delBtn = canDelete
+            ? '<button type="button" class="secondary small" onclick="removeKey(\'' + esc(l.key) + '\')">Xóa</button>'
+            : "";
           return "<tr><td><code>" + esc(l.key) + "</code>" + dead + "</td><td>" + esc(l.tier) +
             "</td><td>" + esc(l.perms || "") + "</td><td>" + exp +
             "</td><td>" + deviceCell(devices, l.max_devices) +
             '</td><td class="actions">' +
             '<button type="button" class="danger small" onclick="revoke(\'' + esc(l.key) + '\')">Khóa</button>' +
-            '<button type="button" class="secondary small" onclick="removeKey(\'' + esc(l.key) + '\')">Xóa</button>' +
+            delBtn +
             "</td></tr>";
         }).join("");
       } catch (e) {
