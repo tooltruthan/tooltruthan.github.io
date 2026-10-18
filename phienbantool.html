@@ -325,7 +325,8 @@ h1 span {
   line-height: 1.5;
 }
 
-.feature-list li::before {
+/* Chỉ Key VIP và Key Chí tôn giữ dấu check */
+.price-block:not(:first-child) .feature-list li::before {
   content: "✓";
   position: absolute;
   left: 0;
