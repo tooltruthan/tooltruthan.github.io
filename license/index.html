@@ -19,6 +19,8 @@
     button { margin-top:14px; padding:10px 16px; border:0; border-radius:8px; background:var(--acc); color:#1a1200; font-weight:700; cursor:pointer; }
     button.secondary { background:#334155; color:var(--ink); margin-left:8px; }
     button.danger { background:var(--bad); color:#fff; }
+    button.small { margin-top:0; padding:6px 10px; font-size:.78rem; margin-left:0; margin-right:6px; }
+    td.actions { white-space:nowrap; }
     table { width:100%; border-collapse: collapse; font-size:.85rem; }
     th, td { text-align:left; padding:8px 6px; border-bottom:1px solid #2a3542; vertical-align:top; }
     th { color: var(--muted); font-weight:600; }
@@ -200,7 +202,10 @@
           return "<tr><td><code>" + l.key + "</code>" + dead + "</td><td>" + l.tier +
             "</td><td>" + (l.perms || "") + "</td><td>" + exp +
             "</td><td>" + (binds[l.key] || 0) + "/" + l.max_devices +
-            '</td><td><button type="button" class="danger" onclick="revoke(\'' + l.key + '\')">Khóa</button></td></tr>';
+            '</td><td class="actions">' +
+            '<button type="button" class="danger small" onclick="revoke(\'' + l.key + '\')">Khóa</button>' +
+            '<button type="button" class="secondary small" onclick="removeKey(\'' + l.key + '\')">Xóa</button>' +
+            "</td></tr>";
         }).join("");
       } catch (e) {
         $("tbody").innerHTML = '<tr><td colspan="6" style="color:var(--bad)">' + (e.message || e) + "</td></tr>";
@@ -210,6 +215,15 @@
       if (!confirm("Khóa key " + key + "?")) return;
       try {
         await api("/api/admin/revoke", { method: "POST", body: JSON.stringify({ key }) });
+        loadList();
+      } catch (e) {
+        alert(e.message || e);
+      }
+    }
+    async function removeKey(key) {
+      if (!confirm("Xóa hẳn key " + key + "?\nKhông hoàn tác được.")) return;
+      try {
+        await api("/api/admin/delete", { method: "POST", body: JSON.stringify({ key }) });
         loadList();
       } catch (e) {
         alert(e.message || e);
