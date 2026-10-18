@@ -21,6 +21,12 @@
     button.danger { background:var(--bad); color:#fff; }
     button.small { margin-top:0; padding:6px 10px; font-size:.78rem; margin-left:0; margin-right:6px; }
     td.actions { white-space:nowrap; }
+    .dev-list { margin:0; padding:0; list-style:none; font-size:.78rem; line-height:1.4; }
+    .dev-list li { margin:0 0 4px; }
+    .dev-list code { font-size:.76rem; color: var(--acc); }
+    .dev-list .nv { color: var(--ink); }
+    .dev-list .muted { color: var(--muted); }
+    .dev-count { color: var(--muted); font-size:.75rem; margin-bottom:4px; }
     table { width:100%; border-collapse: collapse; font-size:.85rem; }
     th, td { text-align:left; padding:8px 6px; border-bottom:1px solid #2a3542; vertical-align:top; }
     th { color: var(--muted); font-weight:600; }
@@ -103,7 +109,7 @@
       <div style="overflow-x:auto; margin-top:10px">
         <table>
           <thead>
-            <tr><th>Key</th><th>Loại</th><th>Quyền</th><th>Hết hạn</th><th>Máy</th><th></th></tr>
+            <tr><th>Key</th><th>Loại</th><th>Quyền</th><th>Hết hạn</th><th>Mã máy / Nhân vật</th><th></th></tr>
           </thead>
           <tbody id="tbody"><tr><td colspan="6" style="color:var(--muted)">Chưa tải.</td></tr></tbody>
         </table>
@@ -183,13 +189,34 @@
         show("createMsg", String(e.message || e), false);
       }
     }
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    function deviceCell(list, maxDevices) {
+      const n = list.length;
+      const head = '<div class="dev-count">' + n + "/" + maxDevices + " máy</div>";
+      if (!n) return head + '<span class="muted">Chưa gắn máy (JAR chưa check key)</span>';
+      const items = list.map((b) => {
+        const dev = esc(b.device || "?");
+        const nv = (b.char_name || "").trim();
+        const nvHtml = nv ? '<span class="nv">' + esc(nv) + "</span>" : '<span class="muted">(chưa có NV)</span>';
+        const seen = b.last_seen ? new Date(Number(b.last_seen)).toLocaleString() : "";
+        return "<li><code title=\"Mã máy từ JAR\">" + dev + "</code> · " + nvHtml +
+          (seen ? '<br><span class="muted">online: ' + esc(seen) + "</span>" : "") +
+          "</li>";
+      }).join("");
+      return head + '<ul class="dev-list">' + items + "</ul>";
+    }
     async function loadList() {
       try {
         const data = await api("/api/admin/list");
         const tb = $("tbody");
         const binds = {};
         (data.bindings || []).forEach((b) => {
-          binds[b.key] = (binds[b.key] || 0) + 1;
+          if (!binds[b.key]) binds[b.key] = [];
+          binds[b.key].push(b);
         });
         if (!data.licenses || !data.licenses.length) {
           tb.innerHTML = '<tr><td colspan="6" style="color:var(--muted)">Chưa có key.</td></tr>';
@@ -199,16 +226,17 @@
           const permanent = String(l.tier).toLowerCase() === "chiton" || Number(l.expires_at) <= 0;
           const exp = permanent ? "Không hạn" : new Date(Number(l.expires_at)).toLocaleString();
           const dead = l.disabled ? " (KHÓA)" : "";
-          return "<tr><td><code>" + l.key + "</code>" + dead + "</td><td>" + l.tier +
-            "</td><td>" + (l.perms || "") + "</td><td>" + exp +
-            "</td><td>" + (binds[l.key] || 0) + "/" + l.max_devices +
+          const devices = binds[l.key] || [];
+          return "<tr><td><code>" + esc(l.key) + "</code>" + dead + "</td><td>" + esc(l.tier) +
+            "</td><td>" + esc(l.perms || "") + "</td><td>" + exp +
+            "</td><td>" + deviceCell(devices, l.max_devices) +
             '</td><td class="actions">' +
-            '<button type="button" class="danger small" onclick="revoke(\'' + l.key + '\')">Khóa</button>' +
-            '<button type="button" class="secondary small" onclick="removeKey(\'' + l.key + '\')">Xóa</button>' +
+            '<button type="button" class="danger small" onclick="revoke(\'' + esc(l.key) + '\')">Khóa</button>' +
+            '<button type="button" class="secondary small" onclick="removeKey(\'' + esc(l.key) + '\')">Xóa</button>' +
             "</td></tr>";
         }).join("");
       } catch (e) {
-        $("tbody").innerHTML = '<tr><td colspan="6" style="color:var(--bad)">' + (e.message || e) + "</td></tr>";
+        $("tbody").innerHTML = '<tr><td colspan="6" style="color:var(--bad)">' + esc(e.message || e) + "</td></tr>";
       }
     }
     async function revoke(key) {
